@@ -7,7 +7,7 @@ MVP artichecture, RxJava2, Dagger 2, RecyclerView, AnimatedVectorDrawableCompat,
 
 The minimum Android API Level: Android 4.0.3 (IceCreamSandwich-15) and later. 
 
-### Under Construction yet!
+### :construction: Under Construction yet! :construction:
 ### TODO:  
 1- Lazy Load for Main Acitivty RecyclerView.
 
