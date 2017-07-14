@@ -3,17 +3,20 @@ Fetch JSON from a Web-Service and insert them to RecyclerView.
 
 MVP artichecture, RxJava2, Dagger 2, RecyclerView, AnimatedVectorDrawableCompat, Retrofit, GSON, ButterKnife
 
-### Under C onstruction yet!
+### Under Construction yet!
 ### TODO:  
 1- Lazy Load for Main Acitivty RecyclerView.
 
 2- Make better way to pass data from Splash to Main Activity.
 
-3- Fix "\n" problem on retrieved data.
+3- Fix `\n` problem on retrieved data.
 
 4- Check internet connection.
 
 5- Don't close whole application on Back press.
+
+### CREDITS
+* [HolidayPirates](http://holidaypirates.com/) - As Holiday Logo used in this Sample Project.
 
 ### License
 ```
