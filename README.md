@@ -25,7 +25,7 @@ The minimum Android API Level: Android 4.0.3 (IceCreamSandwich-15) and later.
 
 
 ### CREDITS
-* [HolidayPirates](http://holidaypirates.com/) - As Holiday Logo used in this Sample Project.
+* [HolidayPirates](http://holidaypirates.com/) - As HolidayPirates Logo used in this Sample Project.
 
 ### License
 ```
