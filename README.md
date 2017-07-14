@@ -3,6 +3,10 @@ Fetch JSON from a Web-Service and insert them to RecyclerView.
 
 MVP artichecture, RxJava2, Dagger 2, RecyclerView, AnimatedVectorDrawableCompat, Retrofit, GSON, ButterKnife
 
+## Requirements
+
+The minimum Android API Level: Android 4.0.3 (IceCreamSandwich-15) and later. 
+
 ### Under Construction yet!
 ### TODO:  
 1- Lazy Load for Main Acitivty RecyclerView.
