@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" tools:ignore="NewApi"
+    android:drawable="@drawable/vd_vector">
+
+    <target android:name="dot_1" android:animation="@animator/dot_default_anim"/>
+
+    <target android:name="dot_2" android:animation="@animator/dot_default_anim"/>
+
+    <target android:name="dot_3" android:animation="@animator/dot_default_anim"/>
+
+    <target android:name="dot_4" android:animation="@animator/dot_default_anim"/>
+
+    <target android:name="dot_5" android:animation="@animator/dot_default_anim"/>
+
+    <target android:name="dots" android:animation="@animator/dots_anim"/>
+
+    <target android:name="bird" android:animation="@animator/bird_anim"/>
+
+    <!--<target android:name="dot_1" android:animation="@animator/dot_1_anim"/>
+
+    <target android:name="dot_2" android:animation="@animator/dot_2_anim"/>
+
+    <target android:name="dot_3" android:animation="@animator/dot_3_anim"/>
+
+    <target android:name="dot_4" android:animation="@animator/dot_4_anim"/>
+
+    <target android:name="dot_5" android:animation="@animator/dot_5_anim"/>
+
+    <target android:name="dots" android:animation="@animator/dots_anim"/>
+
+    <target android:name="bird" android:animation="@animator/bird_anim"/>-->
+
+</animated-vector>
