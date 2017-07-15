@@ -9,6 +9,8 @@ import com.google.gson.annotations.SerializedName;
 @Generated("com.robohorse.robopojogenerator")
 public class Comments implements Parcelable {
 
+	public Comments(){}
+
 	@SerializedName("name")
 	private String name;
 

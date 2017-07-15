@@ -1,5 +1,7 @@
 package ir.hosseinabbasi.holidaypirates.data.network;
 
+import com.google.gson.GsonBuilder;
+
 import retrofit2.Retrofit;
 //import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;

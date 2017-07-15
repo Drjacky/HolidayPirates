@@ -85,6 +85,7 @@ public class MainActivity extends BaseActivity implements MainMvpView {
             public void accept(@NonNull String s) throws Exception {
                 JsonObject jsonObject = new Gson().fromJson( s.replace("Posts{","{"), JsonObject.class); //Fix this!
                 String clickedPostId = jsonObject.get("id").toString();
+                clickedPostId = clickedPostId.replace("\"",""); //Fix this!
                 mPresenter.onPostsItemClicked(clickedPostId);
             }
         });
