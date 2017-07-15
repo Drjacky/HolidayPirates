@@ -1,5 +1,8 @@
 package ir.hosseinabbasi.holidaypirates.ui.detail;
 
+import java.util.List;
+
+import ir.hosseinabbasi.holidaypirates.data.db.model.Comments;
 import ir.hosseinabbasi.holidaypirates.di.PerActivity;
 import ir.hosseinabbasi.holidaypirates.ui.base.MvpPresenter;
 
@@ -9,5 +12,5 @@ import ir.hosseinabbasi.holidaypirates.ui.base.MvpPresenter;
 
 @PerActivity
 public interface DetailMvpPresenter<V extends DetailMvpView> extends MvpPresenter<V> {
-
+    void onViewInitialized();
 }

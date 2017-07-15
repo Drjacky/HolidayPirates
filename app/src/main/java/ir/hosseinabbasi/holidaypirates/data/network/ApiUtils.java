@@ -13,8 +13,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiUtils {
 
-    public static JsonPlaceHolderService getJsonPlaceHolderService() {
-        return getClient(ApiEndPoint.ENDPOINT_JSONPLACEHOLDER_COMMENTS).create(JsonPlaceHolderService.class);
+    public static ApiHelper getJsonPlaceHolderService() {
+        return getClient(ApiEndPoint.ENDPOINT_JSONPLACEHOLDER_COMMENTS).create(ApiHelper.class);
     }
 
     public static Retrofit getClient(String baseUrl) {

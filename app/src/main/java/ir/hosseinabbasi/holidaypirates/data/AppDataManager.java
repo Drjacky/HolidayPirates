@@ -13,6 +13,7 @@ import ir.hosseinabbasi.holidaypirates.data.db.model.Comments;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Posts;
 import ir.hosseinabbasi.holidaypirates.data.network.ApiHelper;
 import ir.hosseinabbasi.holidaypirates.di.ApplicationContext;
+import retrofit2.http.Path;
 
 /**
  * Created by Dr.jacky on 2017/07/13.
@@ -105,9 +106,14 @@ public class AppDataManager implements DataManager, ApiHelper {
     }
 
     @Override
+    public Observable<List<Comments>> getComments(@Path("postId") String postId) {
+        return mApiHelper.getComments(postId);
+    }
+
+/*    @Override
     public Observable<List<Comments>> doCommentsListApiCall(String postId) {
         return mApiHelper.doCommentsListApiCall(postId);
-    }
+    }*/
 
     /*@Override
     public rx.Observable<Posts> getPostsList() {

@@ -2,6 +2,7 @@ package ir.hosseinabbasi.holidaypirates.ui.main;
 
 import java.util.List;
 
+import ir.hosseinabbasi.holidaypirates.data.db.model.Comments;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Posts;
 import ir.hosseinabbasi.holidaypirates.ui.base.MvpView;
 
@@ -11,6 +12,5 @@ import ir.hosseinabbasi.holidaypirates.ui.base.MvpView;
 
 public interface MainMvpView extends MvpView {
     void refreshPostsList(List<Posts> postList);
-    void reloadPostsList(List<Posts> postList);
-    void openDetailActivityWithData();
+    void openDetailActivityWithData(List<Comments> commentList);
 }

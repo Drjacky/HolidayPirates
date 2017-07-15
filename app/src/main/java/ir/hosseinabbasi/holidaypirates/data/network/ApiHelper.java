@@ -18,10 +18,15 @@ public interface ApiHelper {
     //@GET("posts")
     Observable<List<Posts>> doPostsListApiCall();
 
-    @GET("posts/{postId}/comments")
+    /*@GET("posts/{postId}/comments")
     Observable<List<Comments>> doCommentsListApiCall(@Path("postId") String postId);
     //Observable<List<Comments>> doCommentsListApiCall(@Path("postId") String postId); //Retrofit
 
 
-    //Observable<List<Comments>> doCommentsListApiCall(String postId); //But I used Fast-Android-Networking instead.
+    //Observable<List<Comments>> doCommentsListApiCall(String postId); //But I used Fast-Android-Networking instead.*/
+
+    @GET("posts/{postId}/comments")
+        //Call<List<Comments>> getComments(@Path("postId") String postId);
+        //Observable<Callback<List<Comments>>> getComments(@Path("postId") String postId);
+    Observable<List<Comments>> getComments(@Path("postId") String postId);
 }

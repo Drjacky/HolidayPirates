@@ -28,7 +28,6 @@ import ir.hosseinabbasi.holidaypirates.data.db.model.Posts;
 import ir.hosseinabbasi.holidaypirates.data.network.ApiEndPoint;
 import ir.hosseinabbasi.holidaypirates.data.network.ApiHelper;
 import ir.hosseinabbasi.holidaypirates.data.network.ApiUtils;
-import ir.hosseinabbasi.holidaypirates.data.network.ServiceFactory;
 import ir.hosseinabbasi.holidaypirates.ui.base.BasePresenter;
 import ir.hosseinabbasi.holidaypirates.utils.rx.SchedulerProvider;
 import retrofit2.Call;
@@ -87,8 +86,7 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
 
                     @Override
                     public void onNext(List<Comments> comments) {
-                        //comments.onResponse();
-                        //Log.wtf("value",comments.toString());
+                        getMvpView().openDetailActivityWithData(comments);
                     }
 
                     @Override
@@ -101,6 +99,40 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
 
                     }
                 });
+
+
+
+
+
+
+
+        /*Observable<List<Comments>> mCommentsObservable = ApiUtils.getJsonPlaceHolderService().getComments(postId);
+
+        mCommentsObservable
+                .subscribeOn(getSchedulerProvider().io())
+                .observeOn(getSchedulerProvider().ui())
+                .subscribe(new Observer<List<Comments>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(List<Comments> comments) {
+                        //comments.onResponse();
+                        Log.wtf("valueSizeOf",comments.size()+"");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.v("value",e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });*/
 
 
         /*Call<List<Comments>> mComments = ApiUtils.getJsonPlaceHolderService().getComments(postId);
@@ -147,63 +179,6 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
                 });*/
 
 
-        /*final ApiHelper service = ServiceFactory.createRetrofitService(ApiHelper.class, ApiEndPoint.ENDPOINT_JSONPLACEHOLDER_COMMENTS);
-        Observer obs = service.doCommentsListApiCall(postId)
-                .subscribeOn(getSchedulerProvider().io())
-                .observeOn(getSchedulerProvider().ui())
-                .subscribeWith(getLoginObserver());
-
-    }
-
-    public Observer<List<Comments>> getLoginObserver() {
-        return new Observer<List<Comments>>() {
-        @Override
-        public void onSubscribe(Disposable d) {
-
-        }
-
-        @Override
-        public void onNext(List<Comments> commentses) {
-            Log.wtf("value",commentses.toString());
-        }
-
-        @Override
-        public void onError(Throwable e) {
-            Log.wtf("value",e.toString());
-        }
-
-        @Override
-        public void onComplete() {
-
-        }
-    };*/
-
-
-
-        /*ApiHelper service = ServiceFactory.createRetrofitService(ApiHelper.class, (ApiEndPoint.ENDPOINT_JSONPLACEHOLDER_POSTS));
-        service.doCommentsListApiCall(postId)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(
-                        new DisposableObserver<List<Comments>>() {
-
-                            @Override
-                            public void onComplete() {
-                                Timber.d("Retrofit call 1 completed");
-                            }
-
-                            @Override
-                            public void onError(Throwable e) {
-                                Timber.e(e, "woops we got an error while getting the list of contributors");
-                            }
-
-                            @Override
-                            public void onNext(List<Comments> contributors) {
-                                for (Comments c : contributors) {
-                                    Log.wtf("contributors",contributors.toString());
-                                }
-                            }
-                        });*/
 
 
         /*Log.wtf("5",postId+" ");

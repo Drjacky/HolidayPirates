@@ -16,6 +16,7 @@ import android.view.animation.ScaleAnimation;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,24 +93,13 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     }
 
     @Override
-    public void reloadPostsList(List<Posts> postsList) {
-        refreshPostsList(postsList);
-        ScaleAnimation animation =
-                new ScaleAnimation(
-                        1.15f, 1, 1.15f, 1,
-                        Animation.RELATIVE_TO_SELF, 0.5f,
-                        Animation.RELATIVE_TO_SELF, 0.5f);
-
-        mRecyclerViewPosts.setAnimation(animation);
-        animation.setDuration(100);
-        animation.start();
-    }
-
-    @Override
-    public void openDetailActivityWithData() {
+    public void openDetailActivityWithData(List<Comments> commentsList) {
         Intent intent = DetailActivity.getStartIntent(MainActivity.this);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("commentResponse", (Serializable) commentsList);//Fix this!
+        intent.putExtras(bundle);
         startActivity(intent);
-        finish();
+        //finish();
     }
 
     @Override

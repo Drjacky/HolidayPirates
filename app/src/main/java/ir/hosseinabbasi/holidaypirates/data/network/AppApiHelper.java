@@ -11,6 +11,8 @@ import ir.hosseinabbasi.holidaypirates.data.db.model.Posts;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import io.reactivex.Observable;
+import retrofit2.http.Path;
+
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.rx2androidnetworking.Rx2AndroidNetworking;
 
@@ -46,6 +48,11 @@ public class AppApiHelper implements ApiHelper {
     }
 
     @Override
+    public Observable<List<Comments>> getComments(@Path("postId") String postId) {
+        return null;
+    }
+
+    /*@Override
     public Observable<List<Comments>> doCommentsListApiCall(String postId) {
 
         /*Log.wtf("7",postId+" ");
@@ -56,12 +63,12 @@ public class AppApiHelper implements ApiHelper {
                 .build()
                 .getObjectListObservable(Comments.class); //Fix this!*/
 
-        return new Retrofit
+        /*return new Retrofit
                 .Builder()
                 .baseUrl("http://jsonplaceholder.typicode.com/posts/1/comments")
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build().create(ApiHelper.class).doCommentsListApiCall(postId);
-    }
+    }*/
 }
 

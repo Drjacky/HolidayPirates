@@ -10,4 +10,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@color/violet_holiday">
 
+    <TextView
+        android:id="@+id/activity_detail_txtComments"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="test"/>
+
 </RelativeLayout>
