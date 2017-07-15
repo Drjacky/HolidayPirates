@@ -17,6 +17,7 @@ import retrofit2.http.Query;
 public interface JsonPlaceHolderService {
 
     @GET("posts/{postId}/comments")
-    Call<List<Comments>> getComments(@Path("postId") String postId);
+    //Call<List<Comments>> getComments(@Path("postId") String postId);
     //Observable<Callback<List<Comments>>> getComments(@Path("postId") String postId);
+    Observable<List<Comments>> getComments(@Path("postId") String postId);
 }

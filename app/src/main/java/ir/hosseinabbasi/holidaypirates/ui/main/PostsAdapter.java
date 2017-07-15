@@ -5,6 +5,7 @@ package ir.hosseinabbasi.holidaypirates.ui.main;
  */
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,11 +32,13 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.MyViewHolder
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView mTitle, mId, mBody;
-        private RelativeLayout container;
+        //private RelativeLayout container;
+        private CardView container;
 
         public MyViewHolder(View view) {
             super(view);
-            container = (RelativeLayout) itemView.findViewById(R.id.rlvPostRow);
+            //container = (RelativeLayout) itemView.findViewById(R.id.rlvPostRow);
+            container = (CardView) itemView.findViewById(R.id.crdPostRow);
             mTitle = (TextView) view.findViewById(R.id.txtPostTitle);
             mBody = (TextView) view.findViewById(R.id.txtPostBody);
             mId = (TextView) view.findViewById(R.id.txtPostId);
@@ -55,7 +58,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.MyViewHolder
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.post_row, parent, false);
+                .inflate(R.layout.post_card_row, parent, false);
 
         return new MyViewHolder(itemView);
     }

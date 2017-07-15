@@ -74,7 +74,36 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
 
     @Override
     public void onPostsItemClicked(String postId) {
-        Call<List<Comments>> mComments = ApiUtils.getJsonPlaceHolderService().getComments(postId);
+        Observable<List<Comments>> mCommentsObservable = ApiUtils.getJsonPlaceHolderService().getComments(postId);
+
+        mCommentsObservable
+                .subscribeOn(getSchedulerProvider().io())
+                .observeOn(getSchedulerProvider().ui())
+                .subscribe(new Observer<List<Comments>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(List<Comments> comments) {
+                        //comments.onResponse();
+                        //Log.wtf("value",comments.toString());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.v("value",e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+
+        /*Call<List<Comments>> mComments = ApiUtils.getJsonPlaceHolderService().getComments(postId);
         mComments.enqueue(new Callback<List<Comments>>() {
             @Override
             public void onResponse(Call<List<Comments>> call, Response<List<Comments>> response) {
@@ -85,7 +114,7 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
             public void onFailure(Call<List<Comments>> call, Throwable t) {
                 Log.wtf("responseError", t.toString());
             }
-        });
+        });*/
 
 
 
@@ -108,7 +137,7 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.wtf("value",e.toString());
+                        Log.v("value",e.getMessage());
                     }
 
                     @Override
