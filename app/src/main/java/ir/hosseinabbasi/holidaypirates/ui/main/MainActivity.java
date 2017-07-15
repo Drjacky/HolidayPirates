@@ -23,12 +23,13 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
 import ir.hosseinabbasi.holidaypirates.R;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Comments;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Posts;
 import ir.hosseinabbasi.holidaypirates.ui.base.BaseActivity;
 import ir.hosseinabbasi.holidaypirates.ui.detail.DetailActivity;
-import rx.functions.Action1;
 
 /**
  * Created by Dr.jacky on 2017/07/13.
@@ -79,15 +80,14 @@ public class MainActivity extends BaseActivity implements MainMvpView {
         mRecyclerViewPosts.setItemAnimator(new DefaultItemAnimator());
         mRecyclerViewPosts.addItemDecoration(new RowDivider(this, LinearLayoutManager.VERTICAL));
         mRecyclerViewPosts.setAdapter(mPostAdapter);
-        mPostAdapter.getPositionClicks().subscribe(new Action1<String>() {
+        mPostAdapter.getPositionClicks().subscribe(new Consumer<String>() {
             @Override
-            public void call(String s) {
+            public void accept(@NonNull String s) throws Exception {
                 JsonObject jsonObject = new Gson().fromJson( s.replace("Posts{","{"), JsonObject.class); //Fix this!
                 String clickedPostId = jsonObject.get("id").toString();
                 mPresenter.onPostsItemClicked(clickedPostId);
             }
         });
-
     }
 
     @Override

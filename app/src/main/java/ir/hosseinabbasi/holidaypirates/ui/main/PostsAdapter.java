@@ -18,10 +18,10 @@ import android.widget.TextView;
 import java.util.List;
 
 import butterknife.BindView;
+import io.reactivex.Observable;
+import io.reactivex.subjects.PublishSubject;
 import ir.hosseinabbasi.holidaypirates.R;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Posts;
-import rx.Observable;
-import rx.subjects.PublishSubject;
 
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.MyViewHolder>{
     private final PublishSubject<String> onClickSubject = PublishSubject.create();
@@ -79,7 +79,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.MyViewHolder
     }
 
     public Observable<String> getPositionClicks(){
-        return onClickSubject.asObservable();
+        return onClickSubject;
     }
 
     @Override

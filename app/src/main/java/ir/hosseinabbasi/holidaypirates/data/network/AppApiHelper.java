@@ -11,7 +11,6 @@ import ir.hosseinabbasi.holidaypirates.data.db.model.Posts;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import io.reactivex.Observable;
-//import rx.Observable;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.rx2androidnetworking.Rx2AndroidNetworking;
 

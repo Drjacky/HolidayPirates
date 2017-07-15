@@ -11,6 +11,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -26,11 +27,10 @@ import ir.hosseinabbasi.holidaypirates.data.db.model.Comments;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Posts;
 import ir.hosseinabbasi.holidaypirates.data.network.ApiEndPoint;
 import ir.hosseinabbasi.holidaypirates.data.network.ApiHelper;
+import ir.hosseinabbasi.holidaypirates.data.network.ApiUtils;
 import ir.hosseinabbasi.holidaypirates.data.network.ServiceFactory;
 import ir.hosseinabbasi.holidaypirates.ui.base.BasePresenter;
 import ir.hosseinabbasi.holidaypirates.utils.rx.SchedulerProvider;
-import rx.Observable;
-import rx.functions.Func1;
 import timber.log.Timber;
 
 
@@ -71,7 +71,51 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
 
     @Override
     public void onPostsItemClicked(String postId) {
-        final ApiHelper service = ServiceFactory.createRetrofitService(ApiHelper.class, ApiEndPoint.ENDPOINT_JSONPLACEHOLDER_COMMENTS);
+        Observable<Comments> mCommentsObervable = ApiUtils.getJsonPlaceHolderService().getComments(postId);
+
+        mCommentsObervable
+                .subscribeOn(getSchedulerProvider().io())
+                .observeOn(getSchedulerProvider().ui())
+                .subscribe(new Observer<Comments>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Comments comments) {
+                        Log.wtf("value",comments.toString());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.wtf("value",e.toString());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+                /*.subscribe(new Subscriber<Comments>() {
+
+                    @Override
+                    public void onNext(Comments googlePlacesResponse) {
+
+                    }
+
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+                }*);/
+
+        /*final ApiHelper service = ServiceFactory.createRetrofitService(ApiHelper.class, ApiEndPoint.ENDPOINT_JSONPLACEHOLDER_COMMENTS);
         Observer obs = service.doCommentsListApiCall(postId)
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
@@ -100,7 +144,7 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
         public void onComplete() {
 
         }
-    };
+    };*/
 
 
 
