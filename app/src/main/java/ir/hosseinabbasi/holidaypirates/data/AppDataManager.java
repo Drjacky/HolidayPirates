@@ -8,9 +8,11 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import io.reactivex.Observable;
+import io.reactivex.Observer;
 import ir.hosseinabbasi.holidaypirates.data.db.DbHelper;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Comments;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Posts;
+import ir.hosseinabbasi.holidaypirates.data.db.model.Users;
 import ir.hosseinabbasi.holidaypirates.data.network.ApiHelper;
 import ir.hosseinabbasi.holidaypirates.di.ApplicationContext;
 import retrofit2.http.Path;
@@ -108,5 +110,10 @@ public class AppDataManager implements DataManager, ApiHelper {
     @Override
     public Observable<List<Comments>> getComments(@Path("postId") String postId) {
         return mApiHelper.getComments(postId);
+    }
+
+    @Override
+    public Observer<Users> getUser(@Path("userId") String userId) {
+        return mApiHelper.getUser(userId);
     }
 }

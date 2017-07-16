@@ -6,8 +6,10 @@ package ir.hosseinabbasi.holidaypirates.data.network;
 
 import java.util.List;
 
+import io.reactivex.Observer;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Comments;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Posts;
+import ir.hosseinabbasi.holidaypirates.data.db.model.Users;
 import retrofit2.http.GET;
 import io.reactivex.Observable;
 import retrofit2.http.Path;
@@ -19,4 +21,7 @@ public interface ApiHelper {
 
     @GET("posts/{postId}/comments")
     Observable<List<Comments>> getComments(@Path("postId") String postId);
+
+    @GET("users/{userId}")
+    Observer<Users> getUser(@Path("userId") String userId);
 }
