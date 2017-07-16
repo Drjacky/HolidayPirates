@@ -19,7 +19,7 @@ The minimum Android API Level: Android 4.0.3 (IceCreamSandwich-15) and later.
 
 ~~5- Don't close whole application on Back press.~~
 
-6- Fix the problem of click on RecyclerView Item, and go to Detail Activity.
+~~6- Fix the problem of click on RecyclerView Item, and go to Detail Activity.~~
 
 7- Combine the result of all Observables.
 
