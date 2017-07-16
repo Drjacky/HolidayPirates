@@ -45,6 +45,7 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
         getActivityComponent().inject(this);
         setUnBinder(ButterKnife.bind(this));
         mPresenter.onAttach(DetailActivity.this);
+        setUp();
     }
 
     @Override
@@ -61,14 +62,14 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
     @Override
     public void refreshCommentsList() {
         Log.wtf("refreshCommentsList","Called");
-        /*Intent i = getIntent();
+        Intent i = getIntent();
         commentsList = (List<Comments>) i.getSerializableExtra("commentResponse");//Fix this!
-        Log.wtf("commentsList",commentsList+"");
+        Log.wtf("3",commentsList.toString());
         StringBuilder sb = new StringBuilder();
         for (Comments s : commentsList) {
             sb.append(s);
             sb.append("\t");
         }
-        mTextViewComments.setText(sb.toString());*/
+        mTextViewComments.setText(sb.toString());
     }
 }

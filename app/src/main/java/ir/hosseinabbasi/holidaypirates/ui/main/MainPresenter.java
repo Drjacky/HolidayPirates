@@ -86,6 +86,7 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
 
                     @Override
                     public void onNext(List<Comments> comments) {
+                        Log.wtf("1",comments.toString());
                         getMvpView().openDetailActivityWithData(comments);
                     }
 

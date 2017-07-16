@@ -94,6 +94,7 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
     @Override
     public void openDetailActivityWithData(List<Comments> commentsList) {
+        Log.wtf("2",commentsList.toString());
         Intent intent = DetailActivity.getStartIntent(MainActivity.this);
         Bundle bundle = new Bundle();
         bundle.putSerializable("commentResponse", (Serializable) commentsList);//Fix this!
