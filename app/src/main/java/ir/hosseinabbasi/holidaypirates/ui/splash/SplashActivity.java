@@ -71,13 +71,6 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
     }
 
     @Override
-    public void openMainActivity() {
-        Intent intent = MainActivity.getStartIntent(SplashActivity.this);
-        startActivity(intent);
-        finish();
-    }
-
-    @Override
     public void openMainActivityWithPostsData(List<Posts> posts) {
         Intent intent = MainActivity.getStartIntent(SplashActivity.this);
         Bundle bundle = new Bundle();

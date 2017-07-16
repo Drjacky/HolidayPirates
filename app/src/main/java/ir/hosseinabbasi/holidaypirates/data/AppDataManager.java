@@ -109,16 +109,4 @@ public class AppDataManager implements DataManager, ApiHelper {
     public Observable<List<Comments>> getComments(@Path("postId") String postId) {
         return mApiHelper.getComments(postId);
     }
-
-/*    @Override
-    public Observable<List<Comments>> doCommentsListApiCall(String postId) {
-        return mApiHelper.doCommentsListApiCall(postId);
-    }*/
-
-    /*@Override
-    public rx.Observable<Posts> getPostsList() {
-        return mApiHelper.getPostsList();
-    }*/
-
-
 }

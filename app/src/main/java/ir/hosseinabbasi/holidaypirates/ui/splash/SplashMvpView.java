@@ -10,7 +10,6 @@ import ir.hosseinabbasi.holidaypirates.ui.base.MvpView;
  */
 
 public interface SplashMvpView extends MvpView {
-    void openMainActivity();
     void openMainActivityWithPostsData(List<Posts> posts);
     void startSyncService();
 }

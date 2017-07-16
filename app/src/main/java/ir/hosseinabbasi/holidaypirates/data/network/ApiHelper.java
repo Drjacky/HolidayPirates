@@ -15,18 +15,8 @@ import retrofit2.http.Query;
 
 public interface ApiHelper {
 
-    //@GET("posts")
-    Observable<List<Posts>> doPostsListApiCall();
-
-    /*@GET("posts/{postId}/comments")
-    Observable<List<Comments>> doCommentsListApiCall(@Path("postId") String postId);
-    //Observable<List<Comments>> doCommentsListApiCall(@Path("postId") String postId); //Retrofit
-
-
-    //Observable<List<Comments>> doCommentsListApiCall(String postId); //But I used Fast-Android-Networking instead.*/
+    Observable<List<Posts>> doPostsListApiCall(); //For Fast-Android-Networking; To show with MVP, all of the elements are pluggable
 
     @GET("posts/{postId}/comments")
-        //Call<List<Comments>> getComments(@Path("postId") String postId);
-        //Observable<Callback<List<Comments>>> getComments(@Path("postId") String postId);
     Observable<List<Comments>> getComments(@Path("postId") String postId);
 }

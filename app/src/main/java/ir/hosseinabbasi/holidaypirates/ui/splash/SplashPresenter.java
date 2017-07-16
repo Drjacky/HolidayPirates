@@ -40,29 +40,6 @@ public class SplashPresenter<V extends SplashMvpView> extends BasePresenter<V>
         super.onAttach(mvpView);
         //getMvpView().startSyncService();
 
-        /*getCompositeDisposable().add(getDataManager()
-                .seedDatabasePosts()
-                .subscribeOn(getSchedulerProvider().io())
-                .observeOn(getSchedulerProvider().ui())
-                .subscribe(new Consumer<Boolean>() {
-                    @Override
-                    public void accept(Boolean aBoolean) throws Exception {
-                        if (!isViewAttached()) {
-                            return;
-                        }
-                        decideNextActivity();
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        if (!isViewAttached()) {
-                            return;
-                        }
-                        getMvpView().onError(R.string.some_error);
-                        decideNextActivity();
-                    }
-                }));*/
-
         getCompositeDisposable().add(getDataManager()
                 .doPostsListApiCall()
                 .subscribeOn(getSchedulerProvider().io())

@@ -7,7 +7,6 @@ import ir.hosseinabbasi.holidaypirates.BuildConfig;
  */
 
 public final class ApiEndPoint {
-    public static final String ENDPOINT_JSONPLACEHOLDER_POSTS = BuildConfig.BASE_URL
-            +"/posts";
-    public static final String ENDPOINT_JSONPLACEHOLDER_COMMENTS = BuildConfig.BASE_URL + "/";
+    public static final String ENDPOINT_JSONPLACEHOLDER = BuildConfig.BASE_URL;
+    public static final String ENDPOINT_JSONPLACEHOLDER_POSTS = ENDPOINT_JSONPLACEHOLDER +"posts";
 }
