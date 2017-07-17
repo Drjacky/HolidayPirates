@@ -23,5 +23,5 @@ public interface ApiHelper {
     Observable<List<Comments>> getComments(@Path("postId") String postId);
 
     @GET("users/{userId}")
-    Observer<Users> getUser(@Path("userId") String userId);
+    Observable<Users> getUser(@Path("userId") String userId);
 }

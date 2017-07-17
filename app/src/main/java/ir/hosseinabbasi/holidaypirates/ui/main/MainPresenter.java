@@ -18,6 +18,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.BiFunction;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.observers.DisposableObserver;
@@ -25,6 +26,7 @@ import io.reactivex.schedulers.Schedulers;
 import ir.hosseinabbasi.holidaypirates.data.DataManager;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Comments;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Posts;
+import ir.hosseinabbasi.holidaypirates.data.db.model.Users;
 import ir.hosseinabbasi.holidaypirates.data.network.ApiEndPoint;
 import ir.hosseinabbasi.holidaypirates.data.network.ApiHelper;
 import ir.hosseinabbasi.holidaypirates.data.network.ApiUtils;
@@ -72,10 +74,21 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
     }
 
     @Override
-    public void onPostsItemClicked(String postId) {
+    public void onPostsItemClicked(String postId, final String userId) {
         Observable<List<Comments>> mCommentsObservable = ApiUtils.getJsonPlaceHolderService().getComments(postId);
+        Observable<Users> mUsersObservable = ApiUtils.getJsonPlaceHolderService().getUser(userId);
+        Observable.zip(mCommentsObservable, mUsersObservable, new BiFunction<List<Comments>, Users, Observable>() {
+            @Override
+            public Observable apply(@NonNull List<Comments> commentses, @NonNull Users users) throws Exception {
+                return null;
+                //Log.wtf("Biii",)
+            }
+        });
 
-        mCommentsObservable
+
+        //Observable<List<Comments>> mCommentsObservable = ApiUtils.getJsonPlaceHolderService().getComments(postId);
+
+        /*mCommentsObservable
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(new Observer<List<Comments>>() {
@@ -99,7 +112,7 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
                     public void onComplete() {
 
                     }
-                });
+                });*/
 
 
     }

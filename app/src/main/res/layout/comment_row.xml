@@ -15,7 +15,7 @@
     <TextView
         android:id="@+id/txtCommentName"
         android:textColor="@color/black"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:textStyle="bold"
         android:layout_alignParentTop="true"
         android:layout_width="match_parent"
@@ -25,19 +25,22 @@
         android:ellipsize="end"/>
 
     <TextView
+        android:id="@+id/txtCommentEmail"
+        android:textColor="@color/gray"
+        android:layout_width="wrap_content"
+        android:layout_below="@id/txtCommentName"
+        android:layout_alignParentRight="true"
+        android:layout_height="wrap_content" />
+
+    <TextView
         android:id="@+id/txtCommentBody"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtCommentName"
+        android:layout_below="@id/txtCommentEmail"
         android:maxLines="2"
         android:maxLength="40"
         android:ellipsize="end"/>
 
-    <TextView
-        android:id="@+id/txtCommentEmail"
-        android:textColor="@color/gray"
-        android:layout_width="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_height="wrap_content" />
+
 
 </RelativeLayout>

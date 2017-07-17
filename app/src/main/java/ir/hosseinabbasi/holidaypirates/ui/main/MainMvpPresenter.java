@@ -11,5 +11,5 @@ import ir.hosseinabbasi.holidaypirates.ui.base.MvpPresenter;
 @PerActivity
 public interface MainMvpPresenter<V extends MainMvpView> extends MvpPresenter<V> {
     void onViewInitialized();
-    void onPostsItemClicked(String postId);
+    void onPostsItemClicked(String postId, String userId);
 }
