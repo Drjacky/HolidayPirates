@@ -79,7 +79,7 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(mContext);
         mRecyclerViewComments.setLayoutManager(mLayoutManager);
         mRecyclerViewComments.setItemAnimator(new DefaultItemAnimator());
-        //mRecyclerViewPosts.addItemDecoration(new RowDivider(this, LinearLayoutManager.VERTICAL)); //Row Devider in the List
+        mRecyclerViewComments.addItemDecoration(new RowDivider(this, LinearLayoutManager.VERTICAL)); //Row Devider in the List
         mRecyclerViewComments.setAdapter(mCommentsAdapter);
     }
 }

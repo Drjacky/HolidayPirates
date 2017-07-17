@@ -80,10 +80,6 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.MyView
         });
     }
 
-    public Observable<String> getPositionClicks(){
-        return onClickSubject;
-    }
-
     @Override
     public int getItemCount() {
         return commentsList.size();
