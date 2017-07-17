@@ -47,7 +47,7 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     @BindView(R.id.rcyPosts)
     RecyclerView mRecyclerViewPosts;
 
-    private PostsAdapter mPostAdapter;
+    private PostsAdapter mPostsAdapter;
     private List<Posts> postsList = new ArrayList<Posts>();
     private static Context mContext;
 
@@ -75,13 +75,13 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     public void refreshPostsList(List<Posts> pList) {
         Intent i = getIntent();
         postsList = (List<Posts>) i.getSerializableExtra("postResponse");//Fix this!
-        mPostAdapter = new PostsAdapter(mContext, postsList);
+        mPostsAdapter = new PostsAdapter(mContext, postsList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(mContext);
         mRecyclerViewPosts.setLayoutManager(mLayoutManager);
         mRecyclerViewPosts.setItemAnimator(new DefaultItemAnimator());
         //mRecyclerViewPosts.addItemDecoration(new RowDivider(this, LinearLayoutManager.VERTICAL)); //Row Devider in the List
-        mRecyclerViewPosts.setAdapter(mPostAdapter);
-        mPostAdapter.getPositionClicks().subscribe(new Consumer<String>() {
+        mRecyclerViewPosts.setAdapter(mPostsAdapter);
+        mPostsAdapter.getPositionClicks().subscribe(new Consumer<String>() {
             @Override
             public void accept(@NonNull String s) throws Exception {
                 JsonObject jsonObject = new Gson().fromJson( s.replace("Posts{","{"), JsonObject.class); //Fix this!
