@@ -113,7 +113,7 @@ public class AppDataManager implements DataManager, ApiHelper {
     }
 
     @Override
-    public Observer<Users> getUser(@Path("userId") String userId) {
+    public Observable<Users> getUser(@Path("userId") String userId) {
         return mApiHelper.getUser(userId);
     }
 }

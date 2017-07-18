@@ -28,6 +28,7 @@ import io.reactivex.functions.Consumer;
 import ir.hosseinabbasi.holidaypirates.R;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Comments;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Posts;
+import ir.hosseinabbasi.holidaypirates.data.db.model.Users;
 import ir.hosseinabbasi.holidaypirates.ui.base.BaseActivity;
 import ir.hosseinabbasi.holidaypirates.ui.main.MainActivity;
 
@@ -37,7 +38,7 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
     RecyclerView mRecyclerViewComments;
 
     private CommentsAdapter mCommentsAdapter;
-    private List<Comments> commentsList = new ArrayList<Comments>();
+    private List<Object> commentsList = new ArrayList<Object>();
     private static Context mContext;
 
     @Inject
@@ -74,7 +75,9 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
     public void refreshCommentsList() {
         Log.wtf("refreshCommentsList","Called");
         Intent i = getIntent();
-        commentsList = (List<Comments>) i.getSerializableExtra("commentResponse");//Fix this!
+        commentsList = (List<Object>) i.getSerializableExtra("commentResponse");//Fix this!
+        Users hey = (Users)commentsList.get(commentsList.size() - 1);
+        user.remove(hey);
         mCommentsAdapter = new CommentsAdapter(mContext, commentsList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(mContext);
         mRecyclerViewComments.setLayoutManager(mLayoutManager);

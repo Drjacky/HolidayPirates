@@ -1,10 +1,13 @@
 package ir.hosseinabbasi.holidaypirates.data.db.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import javax.annotation.Generated;
 import com.google.gson.annotations.SerializedName;
 
 @Generated("com.robohorse.robopojogenerator")
-public class Address{
+public class Address implements Parcelable {
 
 	@SerializedName("zipcode")
 	private String zipcode;
@@ -62,14 +65,49 @@ public class Address{
 	}
 
 	@Override
- 	public String toString(){
-		return 
-			"Address{" + 
-			"zipcode = '" + zipcode + '\'' + 
-			",geo = '" + geo + '\'' + 
-			",suite = '" + suite + '\'' + 
-			",city = '" + city + '\'' + 
-			",street = '" + street + '\'' + 
-			"}";
+	public String toString(){
+		return
+				"Address{" +
+						"zipcode = '" + zipcode + '\'' +
+						",geo = '" + geo + '\'' +
+						",suite = '" + suite + '\'' +
+						",city = '" + city + '\'' +
+						",street = '" + street + '\'' +
+						"}";
+	}
+
+	protected Address(Parcel in) {
+		zipcode = in.readString();
+		geo = (Geo) in.readValue(Geo.class.getClassLoader());
+		suite = in.readString();
+		city = in.readString();
+		street = in.readString();
+	}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(zipcode);
+		dest.writeValue(geo);
+		dest.writeString(suite);
+		dest.writeString(city);
+		dest.writeString(street);
+	}
+
+	@SuppressWarnings("unused")
+	public static final Parcelable.Creator<Address> CREATOR = new Parcelable.Creator<Address>() {
+		@Override
+		public Address createFromParcel(Parcel in) {
+			return new Address(in);
 		}
+
+		@Override
+		public Address[] newArray(int size) {
+			return new Address[size];
+		}
+	};
 }

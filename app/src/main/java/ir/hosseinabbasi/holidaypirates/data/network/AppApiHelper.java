@@ -47,7 +47,7 @@ public class AppApiHelper implements ApiHelper {
     }
 
     @Override
-    public Observer<Users> getUser(@Path("userId") String userId) {
+    public Observable<Users> getUser(@Path("userId") String userId) {
         return null;
     }
 }

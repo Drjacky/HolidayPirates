@@ -28,6 +28,7 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
 import ir.hosseinabbasi.holidaypirates.R;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Comments;
+import ir.hosseinabbasi.holidaypirates.data.db.model.CommentsUserCombined;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Posts;
 import ir.hosseinabbasi.holidaypirates.ui.base.BaseActivity;
 import ir.hosseinabbasi.holidaypirates.ui.detail.DetailActivity;
@@ -95,11 +96,11 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     }
 
     @Override
-    public void openDetailActivityWithData(List<Comments> commentsList) {
-        Log.wtf("2",commentsList.toString());
+    public void openDetailActivityWithData(List<Object> combinedLisr) {
+        Log.wtf("2",combinedLisr.toString());
         Intent intent = DetailActivity.getStartIntent(MainActivity.this);
         Bundle bundle = new Bundle();
-        bundle.putSerializable("commentResponse", (Serializable) commentsList);//Fix this!
+        bundle.putSerializable("commentResponse", (Serializable) combinedLisr);//Fix this!
         intent.putExtras(bundle);
         startActivity(intent);
         //finish();

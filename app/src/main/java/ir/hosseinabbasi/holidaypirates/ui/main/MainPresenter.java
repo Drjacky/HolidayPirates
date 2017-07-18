@@ -7,11 +7,14 @@ import com.androidnetworking.error.ANError;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -25,6 +28,7 @@ import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 import ir.hosseinabbasi.holidaypirates.data.DataManager;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Comments;
+import ir.hosseinabbasi.holidaypirates.data.db.model.CommentsUserCombined;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Posts;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Users;
 import ir.hosseinabbasi.holidaypirates.data.network.ApiEndPoint;
@@ -73,17 +77,25 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
                 }));
     }
 
+
     @Override
     public void onPostsItemClicked(String postId, final String userId) {
         Observable<List<Comments>> mCommentsObservable = ApiUtils.getJsonPlaceHolderService().getComments(postId);
         Observable<Users> mUsersObservable = ApiUtils.getJsonPlaceHolderService().getUser(userId);
-        Observable.zip(mCommentsObservable, mUsersObservable, new BiFunction<List<Comments>, Users, Observable>() {
+
+        Observable.zip(mCommentsObservable, mUsersObservable,
+                new BiFunction<List<Comments>, Users, List<Object>>() {
             @Override
-            public Observable apply(@NonNull List<Comments> commentses, @NonNull Users users) throws Exception {
-                return null;
-                //Log.wtf("Biii",)
+            public List<Object> apply(@NonNull List<Comments> commentses, @NonNull Users users) throws Exception {
+                List<Object> combinedList = new ArrayList<>();
+                combinedList.addAll(commentses);
+                combinedList.add(users);
+                return combinedList;
             }
-        });
+        })
+        .subscribeOn(getSchedulerProvider().io())
+        .observeOn(getSchedulerProvider().ui())
+        .subscribe(getObserver());
 
 
         //Observable<List<Comments>> mCommentsObservable = ApiUtils.getJsonPlaceHolderService().getComments(postId);
@@ -115,5 +127,43 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
                 });*/
 
 
+    }
+/*
+    private Observable<List<Comments>> getCommentsObservable() {
+        return Observable.create(new ObservableOnSubscribe<List<Comments>>() {
+            @Override
+            public void subscribe(ObservableEmitter<List<Comments>> e) throws Exception {
+                if (!e.isDisposed()) {
+                    e.onNext(Utils.getUserListWhoLovesCricket());
+                    e.onComplete();
+                }
+            }
+        });
+    }*/
+
+    private Observer<List<Object>> getObserver() {
+        return new Observer<List<Object>>() {
+
+            @Override
+            public void onSubscribe(Disposable d) {
+                Log.d(TAG, " onSubscribe : " + d.isDisposed());
+            }
+
+            @Override
+            public void onNext(List<Object> combinedList) {
+                getMvpView().openDetailActivityWithData(combinedList);
+                Log.d(TAG, " onNext : " + combinedList.size());
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.d(TAG, " onError : " + e.getMessage());
+            }
+
+            @Override
+            public void onComplete() {
+                Log.d(TAG, " onComplete");
+            }
+        };
     }
 }
