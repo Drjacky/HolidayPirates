@@ -9,6 +9,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -40,8 +41,12 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
     @BindView(R.id.activity_detail_txtUser)
     TextView mTextViewUser;
 
+    @BindView(R.id.activity_detail_grdPhotos)
+    GridView mGridViewPhotos;
+
     private CommentsAdapter mCommentsAdapter;
-    private List<Object> commentsList = new ArrayList<Object>();
+    private PhotosAdapter mPhotosAdapter;
+    private List<Object> combinedList = new ArrayList<Object>();
     private static Context mContext;
 
     @Inject
@@ -75,17 +80,20 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
     }
 
     @Override
-    public void refreshCommentsList() {
+    public void loadWholeData() {
         Intent i = getIntent();
-        commentsList = (List<Object>) i.getSerializableExtra("commentResponse");//Fix this!
-        Users user = (Users)commentsList.get(commentsList.size() - 1);
-        commentsList.remove(user);
+        combinedList = (List<Object>) i.getSerializableExtra("commentResponse");//Fix this!
+        Users user = (Users)combinedList.get(combinedList.size() - 1);
+        combinedList.remove(user);
         mTextViewUser.setText(user.toString());
-        mCommentsAdapter = new CommentsAdapter(mContext, commentsList);
+        mCommentsAdapter = new CommentsAdapter(mContext, combinedList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(mContext);
         mRecyclerViewComments.setLayoutManager(mLayoutManager);
         mRecyclerViewComments.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerViewComments.addItemDecoration(new RowDivider(this, LinearLayoutManager.VERTICAL)); //Row Devider in the List
+        mRecyclerViewComments.addItemDecoration(new RowDivider(this, LinearLayoutManager.VERTICAL)); //Row Divider in the List
         mRecyclerViewComments.setAdapter(mCommentsAdapter);
+
+        //mPhotosAdapter = new PhotosAdapter(mContext);
+        //mGridViewPhotos.setAdapter(mPhotosAdapter);
     }
 }

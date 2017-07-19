@@ -11,5 +11,5 @@ import ir.hosseinabbasi.holidaypirates.ui.base.MvpView;
  */
 
 public interface DetailMvpView extends MvpView {
-    void refreshCommentsList();
+    void loadWholeData();
 }

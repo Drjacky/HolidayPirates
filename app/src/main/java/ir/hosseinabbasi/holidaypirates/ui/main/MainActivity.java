@@ -80,7 +80,7 @@ public class MainActivity extends BaseActivity implements MainMvpView {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(mContext);
         mRecyclerViewPosts.setLayoutManager(mLayoutManager);
         mRecyclerViewPosts.setItemAnimator(new DefaultItemAnimator());
-        //mRecyclerViewPosts.addItemDecoration(new RowDivider(this, LinearLayoutManager.VERTICAL)); //Row Devider in the List
+        //mRecyclerViewPosts.addItemDecoration(new RowDivider(this, LinearLayoutManager.VERTICAL)); //Row Divider in the List
         mRecyclerViewPosts.setAdapter(mPostsAdapter);
         mPostsAdapter.getPositionClicks().subscribe(new Consumer<String>() {
             @Override

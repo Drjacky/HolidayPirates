@@ -86,62 +86,19 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
         Observable.zip(mCommentsObservable, mUsersObservable,
                 new BiFunction<List<Comments>, Users, List<Object>>() {
             @Override
-            public List<Object> apply(@NonNull List<Comments> commentses, @NonNull Users users) throws Exception {
+            public List<Object> apply(@NonNull List<Comments> comments, @NonNull Users users) throws Exception {
                 List<Object> combinedList = new ArrayList<>();
-                combinedList.addAll(commentses);
+                combinedList.addAll(comments);
                 combinedList.add(users);
                 return combinedList;
             }
         })
         .subscribeOn(getSchedulerProvider().io())
         .observeOn(getSchedulerProvider().ui())
-        .subscribe(getObserver());
-
-
-        //Observable<List<Comments>> mCommentsObservable = ApiUtils.getJsonPlaceHolderService().getComments(postId);
-
-        /*mCommentsObservable
-                .subscribeOn(getSchedulerProvider().io())
-                .observeOn(getSchedulerProvider().ui())
-                .subscribe(new Observer<List<Comments>>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(List<Comments> comments) {
-                        Log.wtf("1",comments.toString());
-                        getMvpView().openDetailActivityWithData(comments);
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.v("value",e.getMessage());
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });*/
-
-
+        .subscribe(openDetailActivityWithDataObserver());
     }
-/*
-    private Observable<List<Comments>> getCommentsObservable() {
-        return Observable.create(new ObservableOnSubscribe<List<Comments>>() {
-            @Override
-            public void subscribe(ObservableEmitter<List<Comments>> e) throws Exception {
-                if (!e.isDisposed()) {
-                    e.onNext(Utils.getUserListWhoLovesCricket());
-                    e.onComplete();
-                }
-            }
-        });
-    }*/
 
-    private Observer<List<Object>> getObserver() {
+    private Observer<List<Object>> openDetailActivityWithDataObserver() {
         return new Observer<List<Object>>() {
 
             @Override
@@ -152,7 +109,6 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
             @Override
             public void onNext(List<Object> combinedList) {
                 getMvpView().openDetailActivityWithData(combinedList);
-                Log.d(TAG, " onNext : " + combinedList.size());
             }
 
             @Override
@@ -162,7 +118,6 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
 
             @Override
             public void onComplete() {
-                Log.d(TAG, " onComplete");
             }
         };
     }

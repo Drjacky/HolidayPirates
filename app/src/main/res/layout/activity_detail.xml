@@ -14,11 +14,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <GridView
+        android:id="@+id/activity_detail_grdPhotos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/activity_detail_txtUser" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/activity_detail_rcyComments"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/activity_detail_txtUser"
+        android:layout_below="@id/activity_detail_grdPhotos"
         android:scrollbars="vertical" />
 
 </RelativeLayout>
