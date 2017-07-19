@@ -37,6 +37,9 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
     @BindView(R.id.activity_detail_rcyComments)
     RecyclerView mRecyclerViewComments;
 
+    @BindView(R.id.activity_detail_txtUser)
+    TextView mTextViewUser;
+
     private CommentsAdapter mCommentsAdapter;
     private List<Object> commentsList = new ArrayList<Object>();
     private static Context mContext;
@@ -73,11 +76,11 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
 
     @Override
     public void refreshCommentsList() {
-        Log.wtf("refreshCommentsList","Called");
         Intent i = getIntent();
         commentsList = (List<Object>) i.getSerializableExtra("commentResponse");//Fix this!
-        Users hey = (Users)commentsList.get(commentsList.size() - 1);
-        user.remove(hey);
+        Users user = (Users)commentsList.get(commentsList.size() - 1);
+        commentsList.remove(user);
+        mTextViewUser.setText(user.toString());
         mCommentsAdapter = new CommentsAdapter(mContext, commentsList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(mContext);
         mRecyclerViewComments.setLayoutManager(mLayoutManager);

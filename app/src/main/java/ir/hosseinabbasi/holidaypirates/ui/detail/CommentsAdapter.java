@@ -25,7 +25,7 @@ import ir.hosseinabbasi.holidaypirates.data.db.model.Posts;
 
 public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.MyViewHolder>{
     private final PublishSubject<String> onClickSubject = PublishSubject.create();
-    private List<Comments> commentsList;
+    private List<Object> commentsList;
     private int lastPosition = -1;
     private Context mContext;
 
@@ -49,7 +49,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.MyView
     }
 
 
-    public CommentsAdapter(Context context, List<Comments> commentsList) {
+    public CommentsAdapter(Context context, List<Object> commentsList) {
         mContext = context;
         this.commentsList = commentsList;
     }
@@ -64,7 +64,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.MyView
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        Comments comment = commentsList.get(position);
+        Comments comment = (Comments) commentsList.get(position);
         final String element = comment.toString();
         holder.mName.setText(comment.getName());
         holder.mBody.setText(comment.getBody()/*.replace("\\\\n", " ")*/);//Fix this!

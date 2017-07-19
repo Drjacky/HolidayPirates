@@ -18,6 +18,7 @@
         android:id="@+id/activity_detail_rcyComments"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/activity_detail_txtUser"
         android:scrollbars="vertical" />
 
 </RelativeLayout>
