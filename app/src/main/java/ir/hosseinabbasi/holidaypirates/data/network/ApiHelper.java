@@ -8,12 +8,12 @@ import java.util.List;
 
 import io.reactivex.Observer;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Comments;
+import ir.hosseinabbasi.holidaypirates.data.db.model.Photos;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Posts;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Users;
 import retrofit2.http.GET;
 import io.reactivex.Observable;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 public interface ApiHelper {
 
@@ -24,4 +24,7 @@ public interface ApiHelper {
 
     @GET("users/{userId}")
     Observable<Users> getUser(@Path("userId") String userId);
+
+    @GET("photos")
+    Observable<List<Photos>> getPhotos();
 }

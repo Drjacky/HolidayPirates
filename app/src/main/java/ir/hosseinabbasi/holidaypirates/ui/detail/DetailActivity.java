@@ -28,6 +28,7 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
 import ir.hosseinabbasi.holidaypirates.R;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Comments;
+import ir.hosseinabbasi.holidaypirates.data.db.model.Photos;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Posts;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Users;
 import ir.hosseinabbasi.holidaypirates.ui.base.BaseActivity;
@@ -47,6 +48,7 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
     private CommentsAdapter mCommentsAdapter;
     private PhotosAdapter mPhotosAdapter;
     private List<Object> combinedList = new ArrayList<Object>();
+    private List<Photos> photosList = new ArrayList<Photos>();
     private static Context mContext;
 
     @Inject
@@ -85,15 +87,19 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
         combinedList = (List<Object>) i.getSerializableExtra("commentResponse");//Fix this!
         Users user = (Users)combinedList.get(combinedList.size() - 1);
         combinedList.remove(user);
-        mTextViewUser.setText(user.toString());
+        mTextViewUser.setText(user.getName());//Just show the user name
         mCommentsAdapter = new CommentsAdapter(mContext, combinedList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(mContext);
         mRecyclerViewComments.setLayoutManager(mLayoutManager);
         mRecyclerViewComments.setItemAnimator(new DefaultItemAnimator());
         mRecyclerViewComments.addItemDecoration(new RowDivider(this, LinearLayoutManager.VERTICAL)); //Row Divider in the List
         mRecyclerViewComments.setAdapter(mCommentsAdapter);
+    }
 
-        //mPhotosAdapter = new PhotosAdapter(mContext);
-        //mGridViewPhotos.setAdapter(mPhotosAdapter);
+    @Override
+    public void loadPhotos(List<Photos> photos) { //Load photos separately, to prevent the user waiting too much
+        photosList = photos;
+        mPhotosAdapter = new PhotosAdapter(mContext, photosList);
+        mGridViewPhotos.setAdapter(mPhotosAdapter);
     }
 }

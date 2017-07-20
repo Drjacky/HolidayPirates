@@ -11,6 +11,7 @@ import io.reactivex.Observable;
 import io.reactivex.Observer;
 import ir.hosseinabbasi.holidaypirates.data.db.DbHelper;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Comments;
+import ir.hosseinabbasi.holidaypirates.data.db.model.Photos;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Posts;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Users;
 import ir.hosseinabbasi.holidaypirates.data.network.ApiHelper;
@@ -115,5 +116,10 @@ public class AppDataManager implements DataManager, ApiHelper {
     @Override
     public Observable<Users> getUser(@Path("userId") String userId) {
         return mApiHelper.getUser(userId);
+    }
+
+    @Override
+    public Observable<List<Photos>> getPhotos() {
+        return mApiHelper.getPhotos();
     }
 }

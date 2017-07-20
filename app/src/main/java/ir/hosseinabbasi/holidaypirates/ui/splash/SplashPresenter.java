@@ -40,6 +40,7 @@ public class SplashPresenter<V extends SplashMvpView> extends BasePresenter<V>
         super.onAttach(mvpView);
         //getMvpView().startSyncService();
 
+        //Fix this! Move this scope to onViewInitialized
         getCompositeDisposable().add(getDataManager()
                 .doPostsListApiCall()
                 .subscribeOn(getSchedulerProvider().io())

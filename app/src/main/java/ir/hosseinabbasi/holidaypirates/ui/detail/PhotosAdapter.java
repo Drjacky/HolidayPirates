@@ -2,6 +2,7 @@ package ir.hosseinabbasi.holidaypirates.ui.detail;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,7 @@ public class PhotosAdapter extends BaseAdapter {
     public PhotosAdapter(Context context, List<Photos> photosList) {
         mContext = context;
         this.photosList = photosList;
+        //Log.wtf("Photos", photosList.toString());
         inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -60,31 +62,31 @@ public class PhotosAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View convertView, ViewGroup viewGroup) {
+        View rowView = convertView;
         final Photos photo = (Photos) photosList.get(i);
 
-        if (convertView == null) {
-            convertView = inflater.inflate(R.layout.photo_card_row, viewGroup, false);
-
-
-            mTextViewTitle = (TextView) convertView.findViewById(R.id.photo_card_row_TxtTitle);
-            mImageViewPhoto = (ImageView) convertView.findViewById(R.id.photo_card_row_ImgPhoto);
+        if (rowView == null) {
+            rowView = inflater.inflate(R.layout.photo_card_row, viewGroup, false);
             holder = new MyViewHolder();
+            holder.mTextViewTitle = (TextView) rowView.findViewById(R.id.photo_card_row_TxtTitle);
+            holder.mImageViewPhoto = (ImageView) rowView.findViewById(R.id.photo_card_row_ImgPhoto);
 
-            convertView.setTag(holder);
+
+            rowView.setTag(holder);
         }
         else {
-            holder = (MyViewHolder) convertView.getTag();
+            holder = (MyViewHolder) rowView.getTag();
         }
 
         holder.mTextViewTitle.setText(photo.getTitle());
         Picasso.with(mContext)
-                .load(photo.getThumbnailUrl()) // thumbnail url goes here
+                .load(photo.getThumbnailUrl()) //Thumbnail URL
                 //.placeholder()
                 .into(holder.mImageViewPhoto, new Callback() {
                     @Override
                     public void onSuccess() {
                         Picasso.with(mContext)
-                                .load(photo.getUrl()) // image url goes here
+                                .load(photo.getUrl()) //Image URL
                                 .placeholder(holder.mImageViewPhoto.getDrawable())
                                 .into(holder.mImageViewPhoto);
                     }
@@ -101,7 +103,7 @@ public class PhotosAdapter extends BaseAdapter {
             }
         });*/
 
-        return convertView;
+        return rowView;
     }
 
     Transformation blurTransformation = new Transformation() {

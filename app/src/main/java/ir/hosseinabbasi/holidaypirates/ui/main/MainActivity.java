@@ -97,7 +97,6 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
     @Override
     public void openDetailActivityWithData(List<Object> combinedLisr) {
-        Log.wtf("2",combinedLisr.toString());
         Intent intent = DetailActivity.getStartIntent(MainActivity.this);
         Bundle bundle = new Bundle();
         bundle.putSerializable("commentResponse", (Serializable) combinedLisr);//Fix this!

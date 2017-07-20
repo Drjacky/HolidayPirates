@@ -8,6 +8,7 @@ import javax.inject.Singleton;
 
 import io.reactivex.Observer;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Comments;
+import ir.hosseinabbasi.holidaypirates.data.db.model.Photos;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Posts;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Users;
 import retrofit2.Retrofit;
@@ -48,6 +49,11 @@ public class AppApiHelper implements ApiHelper {
 
     @Override
     public Observable<Users> getUser(@Path("userId") String userId) {
+        return null;
+    }
+
+    @Override
+    public Observable<List<Photos>> getPhotos() {
         return null;
     }
 }
