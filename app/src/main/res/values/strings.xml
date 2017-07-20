@@ -1,20 +1,5 @@
 <resources>
     <string name="app_name">HolidayPirates</string>
-    <!--Toolbar menus-->
-    <string name="clear">Clear</string>
-    <string name="cut">Cut</string>
-    <string name="copy">Copy</string>
-    <string name="paste">Paste</string>
-    <string name="delete">Delete</string>
-    <string name="share">Share</string>
-
-    <!--Drawer-->
-    <string name="open_drawer">Drawer Open</string>
-    <string name="close_drawer">Drawer Close</string>
-
-    <!--Drawer Menus-->
-    <string name="about">About</string>
-    <string name="logout">Logout</string>
 
     <!--App Message-->
     <string name="api_retry_error">Please retry!</string>
@@ -22,22 +7,7 @@
     <string name="some_error">Some Error Occurred!</string>
     <string name="connection_error">Internet connection lost!</string>
 
-    <!--Login-->
-    <string name="login_dummy">Login Dummy</string>
-    <string name="login">Login</string>
-    <string name="email">Email</string>
-    <string name="password">Password</string>
-
-    <!--Login Validation-->
-    <string name="empty_email">Please provide a non empty email.</string>
-    <string name="invalid_email">Please provide a valid email.</string>
-    <string name="empty_password">Please provide a non empty password.</string>
-
-    <!--about fragment-->
-    <string name="project_info">This sample app implements MVP architecture using Dagger2, GreenDao, RxJava, FastAndroidNetworking and PlaceholderView</string>
-    <string name="link_mvp_blog">1. https://blog.mindorks.com</string>
-    <string name="link_mvp_repo">2. https://github.com/MindorksOpenSource/android-mvp-architecture</string>
-    <string name="link_mindorks_blog">3. https://blog.mindorks.com</string>
-    <string name="link_mindorks_repo">4. https://github.com/MindorksOpenSource</string>
-    <string name="version">"version"</string>
+    <!-- Detail Recycler Activity -->
+    <string name="activity_detail_recycler_backdrop_title">HolidayPirates</string>
+    <string name="activity_detail_recycler_backdrop_subtitle">This season top 20 Hotels by</string>
 </resources>

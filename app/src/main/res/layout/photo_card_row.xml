@@ -1,30 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/crdPhotoRow"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="5dp"
-    android:layout_marginLeft="5dp"
-    android:layout_marginRight="5dp"
-    card_view:cardCornerRadius="5dp">
+    android:layout_height="wrap_content">
 
-    <RelativeLayout
+    <android.support.v7.widget.CardView
+        android:id="@+id/activity_detail_crdPhoto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="10dp">
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/activity_detail_photo_card_margin"
+        android:elevation="3dp"
+        card_view:cardCornerRadius="@dimen/activity_detail_photo_card_radius">
 
-        <ImageView
-            android:id="@+id/photo_card_row_ImgPhoto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/photo_card_row_TxtTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/photo_card_row_ImgPhoto"
-            android:maxLines="2"
-            android:maxLength="40"
-            android:ellipsize="end"/>
-    </RelativeLayout>
-</android.support.v7.widget.CardView>
+            <ImageView
+                android:id="@+id/activity_detail_imgPhotoThumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/activity_detail_photo_height"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:scaleType="fitXY" />
+
+            <TextView
+                android:id="@+id/activity_detail_txtPhotoTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/activity_detail_imgPhotoThumbnail"
+                android:paddingLeft="@dimen/activity_detail_photo_title_padding"
+                android:paddingRight="@dimen/activity_detail_photo_title_padding"
+                android:paddingTop="@dimen/activity_detail_photo_title_padding"
+                android:textColor="@color/activity_detail_photo_card_row_title"
+                android:textSize="@dimen/activity_detail_photo_card_row_title" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

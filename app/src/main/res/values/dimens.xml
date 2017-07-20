@@ -4,4 +4,13 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="app_bar_height">0dp</dimen>
     <dimen name="activity_splash_horizontal_margin">0dp</dimen>
+    <dimen name="activity_detail_photo_card_margin">5dp</dimen>
+    <dimen name="activity_detail_photo_card_radius">1dp</dimen>
+    <dimen name="activity_detail_photo_height">150dp</dimen>
+    <dimen name="activity_detail_photo_title_padding">10dp</dimen>
+    <dimen name="activity_detail_photo_card_row_title">15sp</dimen>
+    <dimen name="activity_detail_recycler_backdrop_height">250dp</dimen>
+    <dimen name="activity_detail_recycler_backdrop_title">30sp</dimen>
+    <dimen name="activity_detail_recycler_backdrop_subtitle">18sp</dimen>
+
 </resources>

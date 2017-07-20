@@ -2,13 +2,11 @@ package ir.hosseinabbasi.holidaypirates.ui.detail;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Callback;
@@ -17,10 +15,8 @@ import com.squareup.picasso.Transformation;
 
 import java.util.List;
 
-import butterknife.BindView;
 import io.reactivex.subjects.PublishSubject;
 import ir.hosseinabbasi.holidaypirates.R;
-import ir.hosseinabbasi.holidaypirates.data.db.model.Comments;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Photos;
 import ir.hosseinabbasi.holidaypirates.utils.Blur;
 
@@ -66,7 +62,7 @@ public class PhotosAdapter extends BaseAdapter {
         final Photos photo = (Photos) photosList.get(i);
 
         if (rowView == null) {
-            rowView = inflater.inflate(R.layout.photo_card_row, viewGroup, false);
+            rowView = inflater.inflate(R.layout.photo_row, viewGroup, false);
             holder = new MyViewHolder();
             holder.mTextViewTitle = (TextView) rowView.findViewById(R.id.photo_card_row_TxtTitle);
             holder.mImageViewPhoto = (ImageView) rowView.findViewById(R.id.photo_card_row_ImgPhoto);

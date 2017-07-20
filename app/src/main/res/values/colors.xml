@@ -32,4 +32,6 @@
     <color name="yellow">#fff44f</color>
 
     <color name="violet_holiday">#6a3460</color>
+    <color name="activity_detail_photo_card_row_title">#4c4c4c</color>
+    <color name="activity_detail_recycler_backgroundColor">#f1f5f8</color>
 </resources>
