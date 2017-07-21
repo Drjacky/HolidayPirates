@@ -4,13 +4,22 @@ package ir.hosseinabbasi.holidaypirates.ui.detail;
  * Created by Dr.jacky on 2017/07/20.
  */
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Point;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -73,10 +82,10 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.MyViewHold
                     }
                 }*/);
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.mThumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //ShowOriginalPhoto();
             }
         });
     }
@@ -99,4 +108,43 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.MyViewHold
             return "blur()";
         }
     };
+
+    private void ShowOriginalPhoto(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setTitle("test");
+        /*builder.setPositiveButton("Link", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        }).setNegativeButton("Close", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });*/
+
+        final AlertDialog dialog = builder.create();
+        LayoutInflater layoutInflater = LayoutInflater.from(mContext);//(LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View inflatedView = layoutInflater.inflate(R.layout.photo_popup, null,false);
+
+        ImageView image = (ImageView) inflatedView.findViewById(R.id.photo_popup_imgPhoto);
+        image.setImageResource(R.drawable.activity_detail_bg_image);
+
+        dialog.setView(inflatedView);
+        //dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.show();
+
+        /*dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface d) {
+                ImageView image = (ImageView) dialog.findViewById(R.id.photo_popup_imgPhoto);
+                Bitmap icon = BitmapFactory.decodeResource(mContext.getResources(),
+                        R.drawable.activity_detail_bg_image);
+                float imageWidthInPX = (float)image.getWidth();
+
+                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(Math.round(imageWidthInPX),
+                        Math.round(imageWidthInPX * (float)icon.getHeight() / (float)icon.getWidth()));
+                image.setLayoutParams(layoutParams);
+            }
+        });*/
+    }
 }

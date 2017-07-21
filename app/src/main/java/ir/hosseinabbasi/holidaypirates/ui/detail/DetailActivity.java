@@ -109,7 +109,7 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
         btnComments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onShowCommentsPopup(view);
+                ShowCommentsPopup(view);
             }
         });
     }
@@ -158,7 +158,7 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
 
-    private void onShowCommentsPopup(View v){
+    private void ShowCommentsPopup(View v){
         LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         Display display = getWindowManager().getDefaultDisplay();
         final Point size = new Point();
