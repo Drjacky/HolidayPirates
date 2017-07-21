@@ -23,6 +23,8 @@ The minimum Android API Level: Android 4.0.3 (IceCreamSandwich-15) and later.
 
 ~~7- Combine the result of all Observables.~~
 
+8- Show loading dialog.
+
 
 ### CREDITS
 * [HolidayPirates](http://holidaypirates.com/) - As HolidayPirates Logo used in this Sample Project.
