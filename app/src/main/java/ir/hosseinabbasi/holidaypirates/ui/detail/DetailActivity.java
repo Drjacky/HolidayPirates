@@ -5,34 +5,22 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Point;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.graphics.drawable.AnimatedVectorDrawableCompat;
-import android.support.v4.widget.PopupWindowCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,15 +28,10 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.functions.Consumer;
 import ir.hosseinabbasi.holidaypirates.R;
-import ir.hosseinabbasi.holidaypirates.data.db.model.Comments;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Photos;
-import ir.hosseinabbasi.holidaypirates.data.db.model.Posts;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Users;
 import ir.hosseinabbasi.holidaypirates.ui.base.BaseActivity;
-import ir.hosseinabbasi.holidaypirates.ui.main.MainActivity;
 
 public class DetailActivity extends BaseActivity implements DetailMvpView {
 
@@ -64,18 +47,17 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
     @BindView(R.id.activity_detail_recycler_txtUser)
     TextView mTextViewUser;
 
-    @BindView(R.id.activity_detail_recycler_rcyPhotos) //~~~//
+    @BindView(R.id.activity_detail_recycler_rcyPhotos)
     RecyclerView mRecyclerViewPhotos;
 
-    @BindView(R.id.activity_detail_recycler_toolbar) //~~~//
+    @BindView(R.id.activity_detail_recycler_toolbar)
     Toolbar toolbar;
 
     @BindView(R.id.activity_detail_recycler_btnComments)
     Button btnComments;
 
     private CommentsAdapter mCommentsAdapter;
-    private PhotosAdapter mPhotosAdapter;//For regular GridView
-    private PhotosRecyclerAdapter mPhotosRecyclerAdapter;//Instead of regular GridView //~~~//
+    private PhotosAdapter mPhotosRecyclerAdapter;//Instead of regular GridView
     private List<Object> combinedList = new ArrayList<Object>();
     private List<Photos> photosList = new ArrayList<Photos>();
     private static Context mContext;
@@ -94,7 +76,7 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_detail);
-        setContentView(R.layout.activity_detail_recycler);
+        setContentView(R.layout.activity_detail);
         getActivityComponent().inject(this);
         setUnBinder(ButterKnife.bind(this));
         mPresenter.onAttach(DetailActivity.this);
@@ -109,8 +91,8 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
 
     @Override
     protected void setUp() {
-        setSupportActionBar(toolbar);//~~~//
-        initCollapsingToolbar();//~~~//
+        setSupportActionBar(toolbar);
+        initCollapsingToolbar();
         mPresenter.onViewInitialized();
     }
 
@@ -136,17 +118,15 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
     public void loadPhotos(List<Photos> photos) { //Load photos separately, to prevent the user waiting too much
 
         photosList = photos;
-        /*mPhotosAdapter = new PhotosAdapter(mContext, photosList);
-        mGridViewPhotos.setAdapter(mPhotosAdapter);*/
-        mPhotosRecyclerAdapter = new PhotosRecyclerAdapter(mContext, photosList);//~~~//
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);//~~~//
-        mRecyclerViewPhotos.setLayoutManager(mLayoutManager);//~~~//
-        mRecyclerViewPhotos.addItemDecoration(new GridRecyclerSpacingItemDecoration(2, ConvertDpToPx(10), true));//~~~//
-        mRecyclerViewPhotos.setItemAnimator(new DefaultItemAnimator());//~~~//
-        mRecyclerViewPhotos.setAdapter(mPhotosRecyclerAdapter);//~~~//
+        mPhotosRecyclerAdapter = new PhotosAdapter(mContext, photosList);
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
+        mRecyclerViewPhotos.setLayoutManager(mLayoutManager);
+        mRecyclerViewPhotos.addItemDecoration(new GridRecyclerSpacingItemDecoration(2, ConvertDpToPx(10), true));
+        mRecyclerViewPhotos.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerViewPhotos.setAdapter(mPhotosRecyclerAdapter);
     }
 
-    private void initCollapsingToolbar() {//~~~//
+    private void initCollapsingToolbar() {
         final CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.activity_detail_recycler_collToolbar);
         collapsingToolbar.setTitle(" ");
@@ -173,7 +153,7 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
         });
     }
 
-    private int ConvertDpToPx(int dp) {//~~~//
+    private int ConvertDpToPx(int dp) {
         Resources r = mContext.getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }

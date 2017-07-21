@@ -48,10 +48,7 @@
         android:id="@+id/comment_row_txtCommentBody"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/comment_row_imgAvatar"
-        android:maxLines="2"
-        android:maxLength="40"
-        android:ellipsize="end"/>
+        android:layout_below="@id/comment_row_imgAvatar" />
 
 
 

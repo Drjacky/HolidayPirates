@@ -1,105 +1,89 @@
 package ir.hosseinabbasi.holidaypirates.ui.detail;
 
+/**
+ * Created by Dr.jacky on 2017/07/20.
+ */
+
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
 import java.util.List;
 
-import io.reactivex.subjects.PublishSubject;
 import ir.hosseinabbasi.holidaypirates.R;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Photos;
 import ir.hosseinabbasi.holidaypirates.utils.Blur;
 
-/**
- * Created by abbasi on 7/19/2017.
- */
-
-public class PhotosAdapter extends BaseAdapter {
-    private final PublishSubject<String> onClickSubject = PublishSubject.create();
-    private List<Photos> photosList;
-    private TextView mTextViewTitle;
-    private ImageView mImageViewPhoto;
-    private int lastPosition = -1;
+public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.MyViewHolder>{
     private Context mContext;
-    private static LayoutInflater inflater = null;
-    private MyViewHolder holder;
+    private List<Photos> photosList;
 
-    public PhotosAdapter(Context context, List<Photos> photosList) {
-        mContext = context;
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        public TextView mTitle;
+        public ImageView mThumbnail;
+
+        public MyViewHolder(View view) {
+            super(view);
+            mTitle = (TextView) view.findViewById(R.id.activity_detail_txtPhotoTitle);
+            mThumbnail = (ImageView) view.findViewById(R.id.activity_detail_imgPhotoThumbnail);
+        }
+    }
+
+
+    public PhotosAdapter(Context mContext, List<Photos> photosList) {
+        this.mContext = mContext;
         this.photosList = photosList;
-        //Log.wtf("Photos", photosList.toString());
-        inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
-    public int getCount() {
-        return photosList.size();
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.photo_card_row, parent, false);
+
+        return new MyViewHolder(itemView);
     }
 
     @Override
-    public Object getItem(int i) {
-        return null;
-    }
+    public void onBindViewHolder(final MyViewHolder holder, int position) {
+        final Photos photo = photosList.get(position);
+        holder.mTitle.setText(photo.getTitle());
 
-    @Override
-    public long getItemId(int i) {
-        return i;
-    }
-
-    @Override
-    public View getView(int i, View convertView, ViewGroup viewGroup) {
-        View rowView = convertView;
-        final Photos photo = (Photos) photosList.get(i);
-
-        if (rowView == null) {
-            rowView = inflater.inflate(R.layout.photo_row, viewGroup, false);
-            holder = new MyViewHolder();
-            holder.mTextViewTitle = (TextView) rowView.findViewById(R.id.photo_card_row_TxtTitle);
-            holder.mImageViewPhoto = (ImageView) rowView.findViewById(R.id.photo_card_row_ImgPhoto);
-
-
-            rowView.setTag(holder);
-        }
-        else {
-            holder = (MyViewHolder) rowView.getTag();
-        }
-
-        holder.mTextViewTitle.setText(photo.getTitle());
         Picasso.with(mContext)
                 .load(photo.getThumbnailUrl()) //Thumbnail URL
-                //.placeholder()
-                .into(holder.mImageViewPhoto, new Callback() {
+                .placeholder(R.drawable.activity_detail_bg_image)
+                .into(holder.mThumbnail/*, new Callback() {
                     @Override
                     public void onSuccess() {
                         Picasso.with(mContext)
                                 .load(photo.getUrl()) //Image URL
-                                .placeholder(holder.mImageViewPhoto.getDrawable())
-                                .into(holder.mImageViewPhoto);
+                                .placeholder(holder.mThumbnail.getDrawable())
+                                .into(holder.mThumbnail);
                     }
                     @Override
                     public void onError() {
 
                     }
-                });
+                }*/);
 
-/*        rowView.setOnClickListener(new OnClickListener() {
-
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            }
-        });*/
 
-        return rowView;
+            }
+        });
+    }
+
+    @Override
+    public int getItemCount() {
+        return photosList.size();
     }
 
     Transformation blurTransformation = new Transformation() {
@@ -115,9 +99,4 @@ public class PhotosAdapter extends BaseAdapter {
             return "blur()";
         }
     };
-
-    public class MyViewHolder {
-        TextView mTextViewTitle;
-        ImageView mImageViewPhoto;
-    }
 }
