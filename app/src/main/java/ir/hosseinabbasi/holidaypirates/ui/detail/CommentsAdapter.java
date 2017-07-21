@@ -38,9 +38,9 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.MyView
             super(view);
             container = (RelativeLayout) itemView.findViewById(R.id.rlvCommentRow);
             //container = (CardView) itemView.findViewById(R.id.crdPostRow);
-            mName = (TextView) view.findViewById(R.id.txtCommentName);
-            mBody = (TextView) view.findViewById(R.id.txtCommentBody);
-            mEmail = (TextView) view.findViewById(R.id.txtCommentEmail);
+            mName = (TextView) view.findViewById(R.id.comment_row_txtCommentName);
+            mBody = (TextView) view.findViewById(R.id.comment_row_txtCommentBody);
+            mEmail = (TextView) view.findViewById(R.id.comment_row_txtCommentEmail);
         }
 
         public void clearAnimation() {

@@ -12,31 +12,43 @@
     android:background="?android:attr/selectableItemBackground"
     android:orientation="vertical">
 
+    <ImageView
+        android:id="@+id/comment_row_imgAvatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/default_avatar"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="10dp"/>
+
     <TextView
-        android:id="@+id/txtCommentName"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:layout_alignParentTop="true"
+        android:id="@+id/comment_row_txtCommentName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="@dimen/comment_row_name"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/comment_row_imgAvatar"
         android:maxLines="1"
         android:maxLength="20"
         android:ellipsize="end"/>
 
     <TextView
-        android:id="@+id/txtCommentEmail"
-        android:textColor="@color/gray"
+        android:id="@+id/comment_row_txtCommentEmail"
         android:layout_width="wrap_content"
-        android:layout_below="@id/txtCommentName"
+        android:layout_height="wrap_content"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/comment_row_email"
+        android:layout_below="@id/comment_row_txtCommentName"
         android:layout_alignParentRight="true"
-        android:layout_height="wrap_content" />
+        android:layout_toRightOf="@id/comment_row_imgAvatar"
+/>
 
     <TextView
-        android:id="@+id/txtCommentBody"
+        android:id="@+id/comment_row_txtCommentBody"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtCommentEmail"
+        android:layout_below="@id/comment_row_imgAvatar"
         android:maxLines="2"
         android:maxLength="40"
         android:ellipsize="end"/>

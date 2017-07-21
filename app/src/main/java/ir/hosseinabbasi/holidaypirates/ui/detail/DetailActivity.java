@@ -3,11 +3,13 @@ package ir.hosseinabbasi.holidaypirates.ui.detail;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.graphics.drawable.AnimatedVectorDrawableCompat;
+import android.support.v4.widget.PopupWindowCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,8 +17,16 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Display;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -60,12 +70,16 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
     @BindView(R.id.activity_detail_recycler_toolbar) //~~~//
     Toolbar toolbar;
 
+    @BindView(R.id.activity_detail_recycler_btnComments)
+    Button btnComments;
+
     private CommentsAdapter mCommentsAdapter;
     private PhotosAdapter mPhotosAdapter;//For regular GridView
     private PhotosRecyclerAdapter mPhotosRecyclerAdapter;//Instead of regular GridView //~~~//
     private List<Object> combinedList = new ArrayList<Object>();
     private List<Photos> photosList = new ArrayList<Photos>();
     private static Context mContext;
+    private PopupWindow popWindow;
 
     @Inject
     DetailMvpPresenter<DetailMvpView> mPresenter;
@@ -108,11 +122,14 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
         combinedList.remove(user);
         mTextViewUser.setText(user.getName());//Just show the user name
         mCommentsAdapter = new CommentsAdapter(mContext, combinedList);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(mContext);
-        /*mRecyclerViewComments.setLayoutManager(mLayoutManager);
-        mRecyclerViewComments.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerViewComments.addItemDecoration(new RowDivider(this, LinearLayoutManager.VERTICAL)); //Row Divider in the List
-        mRecyclerViewComments.setAdapter(mCommentsAdapter);*/
+
+
+        btnComments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onShowCommentsPopup(view);
+            }
+        });
     }
 
     @Override
@@ -159,5 +176,25 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
     private int ConvertDpToPx(int dp) {//~~~//
         Resources r = mContext.getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
+    }
+
+    private void onShowCommentsPopup(View v){
+        LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        Display display = getWindowManager().getDefaultDisplay();
+        final Point size = new Point();
+        display.getSize(size);
+        final View inflatedView = layoutInflater.inflate(R.layout.comment_popup, null,false);
+        RecyclerView rcyComments = (RecyclerView) inflatedView.findViewById(R.id.comment_popup_rcyComments);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(mContext);
+        rcyComments.setLayoutManager(mLayoutManager);
+        rcyComments.setItemAnimator(new DefaultItemAnimator());
+        rcyComments.addItemDecoration(new RowDivider(this, LinearLayoutManager.VERTICAL)); //Row Divider in the List
+
+        rcyComments.setAdapter(mCommentsAdapter);
+
+        popWindow = new PopupWindow(inflatedView, size.x - 50,size.y - 50, true );
+        popWindow.setBackgroundDrawable(getResources().getDrawable(R.drawable.comment_round_corner));
+        popWindow.setOutsideTouchable(true);
+        popWindow.showAtLocation(v, Gravity.CENTER, 0,0);
     }
 }

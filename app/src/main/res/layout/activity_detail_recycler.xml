@@ -71,6 +71,15 @@
                         android:textSize="@dimen/activity_detail_recycler_backdrop_subtitle" />
 
                 </LinearLayout>
+                <Button
+                    android:id="@+id/activity_detail_recycler_btnComments"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/AppTheme.Button"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/activity_detail_recycler_comments_title"
+                    android:textSize="@dimen/activity_detail_recycler_comments_title" />
             </RelativeLayout>
 
             <android.support.v7.widget.Toolbar
