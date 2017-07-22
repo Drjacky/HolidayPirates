@@ -85,7 +85,7 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.MyViewHold
         holder.mThumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //ShowOriginalPhoto();
+                ShowOriginalPhoto();
             }
         });
     }

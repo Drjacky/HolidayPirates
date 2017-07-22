@@ -44,13 +44,14 @@ public class DetailPresenter<V extends DetailMvpView> extends BasePresenter<V>
     @Override
     public void onViewInitialized() {
         getMvpView().loadWholeData();
-
+        getMvpView().showLoading();
         ApiUtils.getJsonPlaceHolderService().getPhotos()
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(new Consumer<List<Photos>>() {
                     @Override
                     public void accept(@NonNull List<Photos> photos) throws Exception {
+                        getMvpView().hideLoading();
                         getMvpView().loadPhotos(photos.subList(0, 20));//Just show first 20 images from /photos);
                     }
                 });

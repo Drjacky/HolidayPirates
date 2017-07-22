@@ -38,7 +38,8 @@ public class SplashPresenter<V extends SplashMvpView> extends BasePresenter<V>
     @Override
     public void onAttach(V mvpView) {
         super.onAttach(mvpView);
-        //getMvpView().startSyncService();
+
+        getMvpView().showLoading();
 
         //Fix this! Move this scope to onViewInitialized
         getCompositeDisposable().add(getDataManager()

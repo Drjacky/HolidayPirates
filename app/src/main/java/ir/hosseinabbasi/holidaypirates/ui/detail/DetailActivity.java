@@ -60,14 +60,14 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
     private PhotosAdapter mPhotosRecyclerAdapter;//Instead of regular GridView
     private List<Object> combinedList = new ArrayList<Object>();
     private List<Photos> photosList = new ArrayList<Photos>();
-    private static Context mContext;
+    private Context mContext;
     private PopupWindow popWindow;
 
     @Inject
     DetailMvpPresenter<DetailMvpView> mPresenter;
 
     public static Intent getStartIntent(Context context) {
-        mContext = context;
+
         Intent intent = new Intent(context, DetailActivity.class);
         return intent;
     }
@@ -75,8 +75,8 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_detail);
         setContentView(R.layout.activity_detail);
+        mContext = this;
         getActivityComponent().inject(this);
         setUnBinder(ButterKnife.bind(this));
         mPresenter.onAttach(DetailActivity.this);
@@ -116,7 +116,6 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
 
     @Override
     public void loadPhotos(List<Photos> photos) { //Load photos separately, to prevent the user waiting too much
-
         photosList = photos;
         mPhotosRecyclerAdapter = new PhotosAdapter(mContext, photosList);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);

@@ -80,6 +80,7 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
 
     @Override
     public void onPostsItemClicked(String postId, final String userId) {
+        getMvpView().showLoading();
         Observable<List<Comments>> mCommentsObservable = ApiUtils.getJsonPlaceHolderService().getComments(postId);
         Observable<Users> mUsersObservable = ApiUtils.getJsonPlaceHolderService().getUser(userId);
 
@@ -108,6 +109,7 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
 
             @Override
             public void onNext(List<Object> combinedList) {
+                getMvpView().hideLoading();
                 getMvpView().openDetailActivityWithData(combinedList);
             }
 
