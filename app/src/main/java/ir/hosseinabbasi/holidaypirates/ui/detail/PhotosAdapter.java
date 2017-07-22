@@ -85,7 +85,7 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.MyViewHold
         holder.mThumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ShowOriginalPhoto();
+                ShowOriginalPhoto(photo.getUrl());
             }
         });
     }
@@ -109,9 +109,8 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.MyViewHold
         }
     };
 
-    private void ShowOriginalPhoto(){
+    private void ShowOriginalPhoto(final String originalUrl){
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        builder.setTitle("test");
         builder.setPositiveButton("Link", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -125,26 +124,25 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.MyViewHold
         final AlertDialog dialog = builder.create();
         LayoutInflater layoutInflater = LayoutInflater.from(mContext);//(LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View inflatedView = layoutInflater.inflate(R.layout.photo_popup, null,false);
-
-        ImageView image = (ImageView) inflatedView.findViewById(R.id.photo_popup_imgPhoto);
-        image.setImageResource(R.drawable.activity_detail_bg_image);
-
         dialog.setView(inflatedView);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.show();
+        final ImageView image = (ImageView) dialog.findViewById(R.id.photo_popup_imgPhoto);
+        Picasso.with(mContext)
+                .load(originalUrl) //Image URL
+                //.placeholder(holder.mThumbnail.getDrawable())
+                .into(image);
 
-        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+        /*dialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface d) {
-                ImageView image = (ImageView) dialog.findViewById(R.id.photo_popup_imgPhoto);
-                Bitmap icon = BitmapFactory.decodeResource(mContext.getResources(),
-                        R.drawable.activity_detail_bg_image);
-                float imageWidthInPX = (float)image.getWidth();
+                Bitmap icon = BitmapFactory.decodeStream(image.getDrawable())
+                float imageWidthInPX = (float)icon.getWidth();
 
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(Math.round(imageWidthInPX),
                         Math.round(imageWidthInPX * (float)icon.getHeight() / (float)icon.getWidth()));
                 image.setLayoutParams(layoutParams);
             }
-        });
+        });*/
     }
 }

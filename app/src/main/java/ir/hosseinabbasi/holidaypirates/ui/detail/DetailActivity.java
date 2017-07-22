@@ -76,7 +76,7 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        mContext = this;
+        mContext = this; //Fix this!
         getActivityComponent().inject(this);
         setUnBinder(ButterKnife.bind(this));
         mPresenter.onAttach(DetailActivity.this);
