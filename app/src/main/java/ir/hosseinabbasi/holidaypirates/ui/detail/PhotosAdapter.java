@@ -112,7 +112,7 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.MyViewHold
     private void ShowOriginalPhoto(){
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         builder.setTitle("test");
-        /*builder.setPositiveButton("Link", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Link", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
             }
@@ -120,7 +120,7 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.MyViewHold
             @Override
             public void onClick(DialogInterface dialog, int which) {
             }
-        });*/
+        });
 
         final AlertDialog dialog = builder.create();
         LayoutInflater layoutInflater = LayoutInflater.from(mContext);//(LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -130,10 +130,10 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.MyViewHold
         image.setImageResource(R.drawable.activity_detail_bg_image);
 
         dialog.setView(inflatedView);
-        //dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.show();
 
-        /*dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface d) {
                 ImageView image = (ImageView) dialog.findViewById(R.id.photo_popup_imgPhoto);
@@ -145,6 +145,6 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.MyViewHold
                         Math.round(imageWidthInPX * (float)icon.getHeight() / (float)icon.getWidth()));
                 image.setLayoutParams(layoutParams);
             }
-        });*/
+        });
     }
 }
