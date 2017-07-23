@@ -85,7 +85,7 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.MyViewHold
         holder.mThumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ShowOriginalPhoto(photo.getUrl());
+                ShowOriginalPhoto(photo.getUrl(), holder.mThumbnail);
             }
         });
     }
@@ -109,7 +109,7 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.MyViewHold
         }
     };
 
-    private void ShowOriginalPhoto(final String originalUrl){
+    private void ShowOriginalPhoto(final String originalUrl, ImageView imgThumbnail){
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         builder.setPositiveButton("Link", new DialogInterface.OnClickListener() {
             @Override
@@ -130,7 +130,9 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.MyViewHold
         final ImageView image = (ImageView) dialog.findViewById(R.id.photo_popup_imgPhoto);
         Picasso.with(mContext)
                 .load(originalUrl) //Image URL
-                //.placeholder(holder.mThumbnail.getDrawable())
+                //.placeholder(imgThumbnail.getDrawable())
+                //.fit().centerCrop()
+                //.transform(blurTransformation)
                 .into(image);
 
         /*dialog.setOnShowListener(new DialogInterface.OnShowListener() {
