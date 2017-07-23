@@ -38,10 +38,21 @@ public class SplashPresenter<V extends SplashMvpView> extends BasePresenter<V>
     @Override
     public void onAttach(V mvpView) {
         super.onAttach(mvpView);
+    }
 
-        getMvpView().showLoading();
+    private void decideNextActivity(final List<Posts> response) {
+        new Handler().postDelayed(new Runnable() { //This postDelay is not necessary; Just to show the beautiful Splash
+            public void run() {
+                getMvpView().openMainActivityWithPostsData(response);
+            }
+        }, 5500);
 
-        //Fix this! Move this scope to onViewInitialized
+    }
+
+    @Override
+    public void onViewInitialized() {
+        //getMvpView().showLoading();
+
         getCompositeDisposable().add(getDataManager()
                 .doPostsListApiCall()
                 .subscribeOn(getSchedulerProvider().io())
@@ -58,7 +69,7 @@ public class SplashPresenter<V extends SplashMvpView> extends BasePresenter<V>
                             return;
                         }
 
-                        getMvpView().hideLoading();
+                        //getMvpView().hideLoading();
                         decideNextActivity(response);
                     }
                 }, new Consumer<Throwable>() {
@@ -68,7 +79,7 @@ public class SplashPresenter<V extends SplashMvpView> extends BasePresenter<V>
                             return;
                         }
 
-                        getMvpView().hideLoading();
+                        //getMvpView().hideLoading();
 
                         if (throwable instanceof ANError) {
                             ANError anError = (ANError) throwable;
@@ -76,15 +87,5 @@ public class SplashPresenter<V extends SplashMvpView> extends BasePresenter<V>
                         }
                     }
                 }));
-
-    }
-
-    private void decideNextActivity(final List<Posts> response) {
-        new Handler().postDelayed(new Runnable() { //This postDelay is not necessary; Just to show the beautiful Splash
-            public void run() {
-                getMvpView().openMainActivityWithPostsData(response);
-            }
-        }, 5500);
-
     }
 }

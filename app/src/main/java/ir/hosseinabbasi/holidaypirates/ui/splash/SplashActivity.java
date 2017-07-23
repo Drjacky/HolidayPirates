@@ -68,6 +68,7 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
             }
         });
         ///////
+        setUp();
     }
 
     @Override
@@ -93,6 +94,6 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
 
     @Override
     protected void setUp() {
-
+        mPresenter.onViewInitialized();
     }
 }
