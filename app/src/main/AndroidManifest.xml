@@ -3,6 +3,7 @@
     package="ir.hosseinabbasi.holidaypirates">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <uses-sdk tools:overrideLibrary="com.mindorks.placeholderview"/>
 

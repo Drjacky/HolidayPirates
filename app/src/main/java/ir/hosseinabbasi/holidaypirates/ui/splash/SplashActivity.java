@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.support.graphics.drawable.AnimatedVectorDrawableCompat;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.List;
@@ -94,6 +95,9 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
 
     @Override
     protected void setUp() {
-        mPresenter.onViewInitialized();
+        if(isNetworkConnected())
+            mPresenter.onViewInitialized();
+        else
+            Toast.makeText(this, R.string.internet_connection_error, Toast.LENGTH_LONG).show();
     }
 }

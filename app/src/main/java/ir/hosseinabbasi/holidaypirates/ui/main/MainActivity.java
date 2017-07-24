@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -90,7 +91,10 @@ public class MainActivity extends BaseActivity implements MainMvpView {
                 String clickedUserId = jsonObject.get("userId").toString();
                 clickedPostId = clickedPostId.replace("\"",""); //Fix this!
                 clickedUserId = clickedUserId.replace("\"",""); //Fix this!
-                mPresenter.onPostsItemClicked(clickedPostId, clickedUserId);
+                if(isNetworkConnected())
+                    mPresenter.onPostsItemClicked(clickedPostId, clickedUserId);
+                else
+                    Toast.makeText(mContext, R.string.internet_connection_error, Toast.LENGTH_LONG).show();
             }
         });
     }

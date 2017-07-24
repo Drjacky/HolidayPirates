@@ -11,4 +11,6 @@
     <string name="activity_detail_recycler_backdrop_title">HolidayPirates</string>
     <string name="activity_detail_recycler_backdrop_subtitle">This season top 20 Hotels by</string>
     <string name="activity_detail_recycler_comments_title">Comments</string>
+
+    <string name="internet_connection_error">Check you internet connection</string>
 </resources>
