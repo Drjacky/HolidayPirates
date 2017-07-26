@@ -17,7 +17,7 @@ public class ApiUtils {
         return getClient(ApiEndPoint.ENDPOINT_JSONPLACEHOLDER).create(ApiHelper.class);
     }
 
-    public static Retrofit getClient(String baseUrl) { //Fix this! DI
+    public static Retrofit getClient(String baseUrl) { //Fix this! DI - Fixed
 
         Retrofit retrofit = new Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

@@ -11,11 +11,14 @@ import ir.hosseinabbasi.holidaypirates.data.AppDataManager;
 import ir.hosseinabbasi.holidaypirates.data.DataManager;
 import ir.hosseinabbasi.holidaypirates.data.db.AppDbHelper;
 import ir.hosseinabbasi.holidaypirates.data.db.DbHelper;
+import ir.hosseinabbasi.holidaypirates.data.network.ApiEndPoint;
 import ir.hosseinabbasi.holidaypirates.data.network.ApiHelper;
 import ir.hosseinabbasi.holidaypirates.data.network.AppApiHelper;
 import ir.hosseinabbasi.holidaypirates.di.ApplicationContext;
 import ir.hosseinabbasi.holidaypirates.di.DatabaseInfo;
 import ir.hosseinabbasi.holidaypirates.utils.AppConstants;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by Dr.jacky on 2017/07/13.

@@ -18,6 +18,7 @@ import android.widget.TextView;
 import butterknife.Unbinder;
 import ir.hosseinabbasi.holidaypirates.MvpApp;
 import ir.hosseinabbasi.holidaypirates.R;
+import ir.hosseinabbasi.holidaypirates.data.network.ApiEndPoint;
 import ir.hosseinabbasi.holidaypirates.di.component.ActivityComponent;
 import ir.hosseinabbasi.holidaypirates.di.component.DaggerActivityComponent;
 import ir.hosseinabbasi.holidaypirates.di.module.ActivityModule;

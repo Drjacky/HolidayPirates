@@ -33,6 +33,7 @@ import ir.hosseinabbasi.holidaypirates.data.db.model.CommentsUserCombined;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Posts;
 import ir.hosseinabbasi.holidaypirates.ui.base.BaseActivity;
 import ir.hosseinabbasi.holidaypirates.ui.detail.DetailActivity;
+import retrofit2.Retrofit;
 
 /**
  * Created by Dr.jacky on 2017/07/13.
@@ -42,6 +43,9 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
     @Inject
     MainMvpPresenter<MainMvpView> mPresenter;
+
+    @Inject
+    Retrofit retrofit;
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;

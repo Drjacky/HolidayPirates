@@ -8,6 +8,7 @@ import com.androidnetworking.interceptors.HttpLoggingInterceptor;
 import javax.inject.Inject;
 
 import ir.hosseinabbasi.holidaypirates.data.DataManager;
+import ir.hosseinabbasi.holidaypirates.data.network.ApiEndPoint;
 import ir.hosseinabbasi.holidaypirates.di.component.ApplicationComponent;
 import ir.hosseinabbasi.holidaypirates.di.component.DaggerApplicationComponent;
 import ir.hosseinabbasi.holidaypirates.di.module.ApplicationModule;

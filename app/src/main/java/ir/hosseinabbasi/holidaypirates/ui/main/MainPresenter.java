@@ -39,6 +39,7 @@ import ir.hosseinabbasi.holidaypirates.utils.rx.SchedulerProvider;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
 import timber.log.Timber;
 
 
@@ -54,8 +55,9 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
     @Inject
     public MainPresenter(DataManager dataManager,
                          SchedulerProvider schedulerProvider,
-                         CompositeDisposable compositeDisposable) {
-        super(dataManager, schedulerProvider, compositeDisposable);
+                         CompositeDisposable compositeDisposable,
+                         Retrofit retrofit) {
+        super(dataManager, schedulerProvider, compositeDisposable, retrofit);
     }
 
     @Override
@@ -81,8 +83,10 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
     @Override
     public void onPostsItemClicked(String postId, final String userId) {
         getMvpView().showLoading();
-        Observable<List<Comments>> mCommentsObservable = ApiUtils.getJsonPlaceHolderService().getComments(postId);
-        Observable<Users> mUsersObservable = ApiUtils.getJsonPlaceHolderService().getUser(userId);
+        //Observable<List<Comments>> mCommentsObservable = ApiUtils.getJsonPlaceHolderService().getComments(postId);
+        Observable<List<Comments>> mCommentsObservable = getRetrofit().create(ApiHelper.class).getComments(postId);
+        //Observable<Users> mUsersObservable = ApiUtils.getJsonPlaceHolderService().getUser(userId);
+        Observable<Users> mUsersObservable = getRetrofit().create(ApiHelper.class).getUser(userId);
 
         Observable.zip(mCommentsObservable, mUsersObservable,
                 new BiFunction<List<Comments>, Users, List<Object>>() {

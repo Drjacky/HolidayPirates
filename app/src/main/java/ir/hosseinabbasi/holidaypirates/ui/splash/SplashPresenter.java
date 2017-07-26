@@ -17,6 +17,7 @@ import ir.hosseinabbasi.holidaypirates.data.DataManager;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Posts;
 import ir.hosseinabbasi.holidaypirates.ui.base.BasePresenter;
 import ir.hosseinabbasi.holidaypirates.utils.rx.SchedulerProvider;
+import retrofit2.Retrofit;
 
 /**
  * Created by Dr.jacky on 2017/07/13.
@@ -31,8 +32,9 @@ public class SplashPresenter<V extends SplashMvpView> extends BasePresenter<V>
     @Inject
     public SplashPresenter(DataManager dataManager,
                            SchedulerProvider schedulerProvider,
-                           CompositeDisposable compositeDisposable) {
-        super(dataManager, schedulerProvider, compositeDisposable);
+                           CompositeDisposable compositeDisposable,
+                           Retrofit retrofit) {
+        super(dataManager, schedulerProvider, compositeDisposable, retrofit);
     }
 
     @Override

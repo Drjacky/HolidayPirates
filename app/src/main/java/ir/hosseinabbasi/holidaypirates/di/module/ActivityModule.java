@@ -3,9 +3,12 @@ package ir.hosseinabbasi.holidaypirates.di.module;
 import android.app.Activity;
 import android.content.Context;
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 import io.reactivex.disposables.CompositeDisposable;
+import ir.hosseinabbasi.holidaypirates.data.network.ApiEndPoint;
 import ir.hosseinabbasi.holidaypirates.di.ActivityContext;
 import ir.hosseinabbasi.holidaypirates.di.PerActivity;
 import ir.hosseinabbasi.holidaypirates.ui.detail.DetailMvpPresenter;
@@ -19,6 +22,9 @@ import ir.hosseinabbasi.holidaypirates.ui.splash.SplashMvpView;
 import ir.hosseinabbasi.holidaypirates.ui.splash.SplashPresenter;
 import ir.hosseinabbasi.holidaypirates.utils.rx.AppSchedulerProvider;
 import ir.hosseinabbasi.holidaypirates.utils.rx.SchedulerProvider;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by Dr.jacky on 2017/07/13.
@@ -74,5 +80,17 @@ public class ActivityModule {
     DetailMvpPresenter<DetailMvpView> provideDetailPresenter(DetailPresenter<DetailMvpView>
                                                                presenter) {
         return presenter;
+    }
+
+    @Provides
+    @PerActivity
+    Retrofit provideRetrofit(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl(ApiEndPoint.ENDPOINT_JSONPLACEHOLDER)
+                .build();
+
+        return retrofit;
     }
 }

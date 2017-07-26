@@ -17,9 +17,11 @@ import ir.hosseinabbasi.holidaypirates.data.DataManager;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Comments;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Photos;
 import ir.hosseinabbasi.holidaypirates.data.db.model.Posts;
+import ir.hosseinabbasi.holidaypirates.data.network.ApiHelper;
 import ir.hosseinabbasi.holidaypirates.data.network.ApiUtils;
 import ir.hosseinabbasi.holidaypirates.ui.base.BasePresenter;
 import ir.hosseinabbasi.holidaypirates.utils.rx.SchedulerProvider;
+import retrofit2.Retrofit;
 
 /**
  * Created by Dr.jacky on 2017/07/13.
@@ -32,8 +34,9 @@ public class DetailPresenter<V extends DetailMvpView> extends BasePresenter<V>
     @Inject
     public DetailPresenter(DataManager dataManager,
                            SchedulerProvider schedulerProvider,
-                           CompositeDisposable compositeDisposable) {
-        super(dataManager, schedulerProvider, compositeDisposable);
+                           CompositeDisposable compositeDisposable,
+                           Retrofit retrofit) {
+        super(dataManager, schedulerProvider, compositeDisposable, retrofit);
     }
 
     @Override
@@ -45,7 +48,8 @@ public class DetailPresenter<V extends DetailMvpView> extends BasePresenter<V>
     public void onViewInitialized() {
         getMvpView().loadWholeData();
         getMvpView().showLoading();
-        ApiUtils.getJsonPlaceHolderService().getPhotos()
+        //ApiUtils.getJsonPlaceHolderService().getPhotos()
+        getRetrofit().create(ApiHelper.class).getPhotos()
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(new Consumer<List<Photos>>() {

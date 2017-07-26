@@ -18,6 +18,8 @@ import javax.net.ssl.HttpsURLConnection;
 import io.reactivex.disposables.CompositeDisposable;
 import ir.hosseinabbasi.holidaypirates.data.DataManager;
 import ir.hosseinabbasi.holidaypirates.utils.rx.SchedulerProvider;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Base class that implements the Presenter interface and provides a base implementation for
@@ -31,16 +33,19 @@ public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
     private final DataManager mDataManager;
     private final SchedulerProvider mSchedulerProvider;
     private final CompositeDisposable mCompositeDisposable;
+    private final Retrofit mRetrofit;
 
     private V mMvpView;
 
     @Inject
     public BasePresenter(DataManager dataManager,
                          SchedulerProvider schedulerProvider,
-                         CompositeDisposable compositeDisposable) {
+                         CompositeDisposable compositeDisposable,
+                         Retrofit retrofit) {
         this.mDataManager = dataManager;
         this.mSchedulerProvider = schedulerProvider;
         this.mCompositeDisposable = compositeDisposable;
+        this.mRetrofit = retrofit;
     }
 
     @Override
@@ -122,6 +127,10 @@ public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
 
     public CompositeDisposable getCompositeDisposable() {
         return mCompositeDisposable;
+    }
+
+    public Retrofit getRetrofit() {
+        return mRetrofit;
     }
 
     public static class MvpViewNotAttachedException extends RuntimeException {
