@@ -15,7 +15,7 @@ The minimum Android API Level: Android 4.0.3 (IceCreamSandwich-15) and later.
 
 3- Fix `\n` problem on retrieved data.
 
-4- Check internet connection.
+~~4- Check internet connection.~~ But should be improved.
 
 ~~5- Don't close whole application on Back press.~~
 
