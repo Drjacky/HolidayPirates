@@ -1,6 +1,6 @@
 package ir.hosseinabbasi.holidaypirates.ui.base;
 
-import android.support.annotation.StringRes;
+import androidx.annotation.StringRes;
 
 /**
  * Created by Dr.jacky on 2017/07/13.

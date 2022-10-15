@@ -5,13 +5,6 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Point;
 import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.Display;
 import android.view.Gravity;
@@ -20,6 +13,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -100,7 +102,7 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
     public void loadWholeData() {
         Intent i = getIntent();
         combinedList = (List<Object>) i.getSerializableExtra("commentResponse");//Fix this!
-        Users user = (Users)combinedList.get(combinedList.size() - 1);
+        Users user = (Users) combinedList.get(combinedList.size() - 1);
         combinedList.remove(user);
         mTextViewUser.setText(user.getName());//Just show the user name
         mCommentsAdapter = new CommentsAdapter(mContext, combinedList);
@@ -157,12 +159,12 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
 
-    private void ShowCommentsPopup(View v){
-        LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    private void ShowCommentsPopup(View v) {
+        LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         Display display = getWindowManager().getDefaultDisplay();
         final Point size = new Point();
         display.getSize(size);
-        final View inflatedView = layoutInflater.inflate(R.layout.comment_popup, null,false);
+        final View inflatedView = layoutInflater.inflate(R.layout.comment_popup, null, false);
         RecyclerView rcyComments = (RecyclerView) inflatedView.findViewById(R.id.comment_popup_rcyComments);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(mContext);
         rcyComments.setLayoutManager(mLayoutManager);
@@ -171,9 +173,9 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
 
         rcyComments.setAdapter(mCommentsAdapter);
 
-        popWindow = new PopupWindow(inflatedView, size.x - 50,size.y - 50, true );
+        popWindow = new PopupWindow(inflatedView, size.x - 50, size.y - 50, true);
         popWindow.setBackgroundDrawable(getResources().getDrawable(R.drawable.comment_round_corner));
         popWindow.setOutsideTouchable(true);
-        popWindow.showAtLocation(v, Gravity.CENTER, 0,0);
+        popWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
     }
 }

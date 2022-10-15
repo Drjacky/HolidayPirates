@@ -25,7 +25,7 @@ import retrofit2.http.Path;
  */
 
 @Singleton
-public class AppDataManager implements DataManager, ApiHelper {
+public class AppDataManager implements DataManager/*, ApiHelper*/ {
 
     private static final String TAG = "AppDataManager";
 

@@ -3,7 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/HolidayPirates.iml" filepath="$PROJECT_DIR$/HolidayPirates.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/HolidayPirates.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/HolidayPirates.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/HolidayPirates.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/HolidayPirates.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/HolidayPirates.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/HolidayPirates.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/HolidayPirates.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/HolidayPirates.app.unitTest.iml" />
     </modules>
   </component>
 </project>

@@ -2,9 +2,10 @@ package ir.hosseinabbasi.holidaypirates.ui.detail;
 
 import android.content.res.Resources;
 import android.graphics.Rect;
-import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.View;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by Dr.jacky on 2017/07/20.

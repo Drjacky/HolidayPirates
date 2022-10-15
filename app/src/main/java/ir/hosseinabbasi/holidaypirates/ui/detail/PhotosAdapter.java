@@ -10,8 +10,6 @@ import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -21,6 +19,9 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
@@ -65,7 +66,7 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.MyViewHold
         final Photos photo = photosList.get(position);
         holder.mTitle.setText(photo.getTitle());
 
-        Picasso.with(mContext)
+        Picasso.get()
                 .load(photo.getThumbnailUrl()) //Thumbnail URL
                 .placeholder(R.drawable.activity_detail_bg_image)
                 .into(holder.mThumbnail/*, new Callback() {
@@ -128,7 +129,7 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.MyViewHold
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.show();
         final ImageView image = (ImageView) dialog.findViewById(R.id.photo_popup_imgPhoto);
-        Picasso.with(mContext)
+        Picasso.get()
                 .load(originalUrl) //Image URL
                 //.placeholder(imgThumbnail.getDrawable())
                 //.fit().centerCrop()

@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    compileSdkVersion 33
+    buildToolsVersion "33.0.0"
     defaultConfig {
         applicationId "ir.hosseinabbasi.holidaypirates"
-        minSdkVersion 15
-        targetSdkVersion 25
+        minSdkVersion 21
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
         //testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -40,63 +40,63 @@ greendao {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     /*androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
                     exclude group: 'com.android.support', module: 'support-annotations'
                 })
-                testCompile 'junit:junit:4.12'*/
+                testImplementation 'junit:junit:4.12'*/
     // database
-    compile 'org.greenrobot:greendao:3.2.2'
+    implementation 'org.greenrobot:greendao:3.3.0'
     // ui
     ////To Support platform < 21
-    /*compile 'com.android.support:appcompat-v7:25.4.0'
-    compile 'com.android.support:recyclerview-v7:25.4.0'
-    compile 'com.android.support:cardview-v7:25.4.0'
-    compile 'com.android.support:design:25.4.0'
-    compile 'com.android.support:support-vector-drawable:25.4.0'
-    compile 'com.android.support:animated-vector-drawable:25.4.0'*/
-    compile 'com.android.support:appcompat-v7:25.3.1'
-        compile 'com.android.support:recyclerview-v7:25.3.1'
-        compile 'com.android.support:cardview-v7:25.3.1'
-        compile 'com.android.support:design:25.3.1'
-        compile 'com.android.support:support-vector-drawable:25.3.1'
-        compile 'com.android.support:animated-vector-drawable:25.3.1'
-    /*compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
-    compile 'com.android.support:recyclerview-v7:26.0.0-alpha1'
-    compile 'com.android.support:cardview-v7:26.0.0-alpha1'
-    compile 'com.android.support:design:26.0.0-alpha1'
-    compile 'com.android.support:support-vector-drawable:26.0.0-alpha1'
-    compile 'com.android.support:animated-vector-drawable:26.0.0-alpha1'*/
+    /*implementation 'com.android.support:appcompat-v7:25.4.0'
+    implementation 'com.android.support:recyclerview-v7:25.4.0'
+    implementation 'com.android.support:cardview-v7:25.4.0'
+    implementation 'com.android.support:design:25.4.0'
+    implementation 'com.android.support:support-vector-drawable:25.4.0'
+    implementation 'com.android.support:animated-vector-drawable:25.4.0'*/
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+        implementation 'com.android.support:recyclerview-v7:28.0.0'
+        implementation 'com.android.support:cardview-v7:28.0.0'
+        implementation 'com.android.support:design:28.0.0'
+        implementation 'com.android.support:support-vector-drawable:28.0.0'
+        implementation 'com.android.support:animated-vector-drawable:28.0.0'
+    /*implementation 'com.android.support:appcompat-v7:26.0.0-alpha1'
+    implementation 'com.android.support:recyclerview-v7:26.0.0-alpha1'
+    implementation 'com.android.support:cardview-v7:26.0.0-alpha1'
+    implementation 'com.android.support:design:26.0.0-alpha1'
+    implementation 'com.android.support:support-vector-drawable:26.0.0-alpha1'
+    implementation 'com.android.support:animated-vector-drawable:26.0.0-alpha1'*/
     ////
     // font
-    compile 'uk.co.chrisjenx:calligraphy:2.2.0'
+    implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
     // network
-    compile 'com.amitshekhar.android:rx2-android-networking:1.0.0'
-    compile 'com.squareup.retrofit2:retrofit:2.3.0'
-    compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
-    compile 'com.squareup.retrofit2:converter-scalars:2.3.0'
+    implementation 'com.amitshekhar.android:rx2-android-networking:1.0.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.9.0'
     // parser
-    compile 'com.google.code.gson:gson:2.8.0'
+    implementation 'com.google.code.gson:gson:2.9.1'
     // debug database
-    debugCompile 'com.amitshekhar.android:debug-db:1.0.0'
+    debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
     // dependency injection
-    compile 'com.google.dagger:dagger:2.8'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.8'
-    provided 'javax.annotation:jsr250-api:1.0'
-    compile 'javax.inject:javax.inject:1'
-    provided 'com.google.dagger:dagger-compiler:2.8'
-    provided 'org.glassfish:javax.annotation:10.0-b28'
+    implementation 'com.google.dagger:dagger:2.44'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.44'
+    compileOnly'javax.annotation:jsr250-api:1.0'
+    implementation 'javax.inject:javax.inject:1'
+    compileOnly'com.google.dagger:dagger-compiler:2.44'
+    compileOnly'org.glassfish:javax.annotation:10.0-b28'
     // reactive
-    compile 'io.reactivex.rxjava2:rxjava:2.0.6'
-    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
     // code generator for view
-    compile 'com.jakewharton:butterknife:8.5.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    implementation 'com.jakewharton:butterknife:10.2.3'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
     // logger
-    compile 'com.jakewharton.timber:timber:4.5.1'
+    implementation 'com.jakewharton.timber:timber:5.0.1'
     // swipe view
-    compile 'com.mindorks:placeholderview:0.6.1'
-    compile 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
-    compile 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.mindorks:placeholderview:0.6.1'
+    implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }
