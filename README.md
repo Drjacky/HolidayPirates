@@ -25,6 +25,8 @@ The minimum Android API Level: Android 4.0.3 (IceCreamSandwich-15) and later.
 
 ~~8- Show loading dialog.~~
 
+### RESULT:
+<img src="https://raw.githubusercontent.com/Drjacky/HolidayPirates/master/gif/demo.gif" width="350px" height="700px" />
 
 ### CREDITS
 * [HolidayPirates](http://holidaypirates.com/) - As HolidayPirates Logo used in this Sample Project.
